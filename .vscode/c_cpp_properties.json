@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:\\Users\\Dallin_Stephens\\Documents\\BYU-I Courses\\CSE 310 Applied Programming\\Sprint1CPlusPlus\\SFML-3.0.0\\include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "intelliSenseMode": "windows-gcc-x64",
+            "compilerPath": "C:/mingw64/bin/g++.exe"
+        }
+    ],
+    "version": 4
+}
