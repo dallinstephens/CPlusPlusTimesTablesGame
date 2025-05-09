@@ -18,11 +18,36 @@ int main()
     // Reference for fullscreen: https://www.sfml-dev.org/tutorials/3.0/window/window/
     RenderWindow window(VideoMode({1600, 800}), "Times Tables Game", Style::Resize, State::Fullscreen);    // Open the application font
 
-    const Font font("C:/Users/Dallin_Stephens/Documents/BYU-I Courses/CSE 310 Applied Programming/CPlusPlusTimesTablesGame/arialuni.ttf");
-
     // Create a vector called timesTables that will store strings.
-    vector<string> timesTables = {"1 X 2", "2 X 1","2 X 3", "3 X 2"};
-    vector<int> timesTablesAnswers = {2, 2, 6, 6};
+    vector<string> timesTables;
+    string numberString;
+    int xTimesTable = 2;
+    string xTimesTableString = to_string(xTimesTable);
+    
+    vector<int> timesTablesAnswers;
+    
+    for (int i = 1; i < 13; i++) {
+        numberString = to_string(i);
+      timesTables.push_back(numberString + " X " + xTimesTableString);
+      timesTables.push_back(xTimesTableString + " X " + numberString);
+      timesTablesAnswers.push_back(i * xTimesTable);
+      timesTablesAnswers.push_back(xTimesTable * i);
+    }
+    
+    // for (string timesTable : timesTables) {
+    //   cout << timesTable << "\n";
+    // }
+    
+    // cout << endl;
+    
+    // for (int timesTablesAnswer : timesTablesAnswers) {
+    //   cout << timesTablesAnswer << "\n";
+    // }
+
+    // vector<string> timesTables = {"1 X 2", "2 X 1","2 X 3", "3 X 2"};
+    vector<string> timesTablesManipulated = timesTables;
+    // vector<int> timesTablesAnswers = {2, 2, 6, 6};
+    vector<int> timesTablesManipulatedAnswers = timesTablesAnswers;
     // Reference for vector:
     // https://www.w3schools.com/cpp/cpp_vectors.asp
     vector<int> firstNumber;
@@ -30,35 +55,35 @@ int main()
     vector<int> randomAnswer;
     int j = 0;
     
-    while (timesTables.size() >= 1) {
+    while (timesTablesManipulated.size() >= 1) {
         // Display all elements in the timesTable vector.
         // Reference to iterate through each element in a vector:
         // https://www.w3schools.com/cpp/cpp_vectors.asp
         cout << "Elements in the times tables vector: " << endl;
-        for (int i = 0; i < timesTables.size(); i++) {
-            cout << timesTables[i] << "\n";
+        for (int i = 0; i < timesTablesManipulated.size(); i++) {
+            cout << timesTablesManipulated[i] << "\n";
         }
         
-        // Generate a random index between 0 and timesTables.size() - 1
-        int randomIndex = rand() % timesTables.size();
+        // Generate a random index between 0 and timesTablesManipulated.size() - 1
+        int randomIndex = rand() % timesTablesManipulated.size();
         // Used for random answers in different answer squares.
-        int randomAnswerIndex = rand() % timesTables.size();
+        int randomAnswerIndex = rand() % timesTablesManipulated.size();
         
         cout << "randomIndex: " << randomIndex << "\n";
 
         // Get the randomIndex element.
-        cout << "Random Times Table Chosen: " << timesTables[randomIndex] << "\n";
+        cout << "Random Times Table Chosen: " << timesTablesManipulated[randomIndex] << "\n";
         
         // References to get first and last word in a string (using find_first_of and find_last_of to do it):
         // https://stackoverflow.com/questions/7853686/c-find-return-the-last-word-in-the-string-variable-text-string-getfirstwordt
         // https://www.geeksforgeeks.org/stdstringfind_last_of-in-c-with-examples/
-        int indexOfFirstSpaceCharacter = timesTables[randomIndex].find_first_of(' ');
+        int indexOfFirstSpaceCharacter = timesTablesManipulated[randomIndex].find_first_of(' ');
         cout << "indexOfFirstSpaceCharacter: " << indexOfFirstSpaceCharacter << endl;
         // Reference for substring (using it to get first and last word in a string):
         // https://www.geeksforgeeks.org/substring-in-cpp/
         // substr(pos, len);
         // indexOfFirstSpaceCharacter also happens to be the length of the first word.
-        string firstNumberAsString = timesTables[randomIndex].substr(0, indexOfFirstSpaceCharacter);
+        string firstNumberAsString = timesTablesManipulated[randomIndex].substr(0, indexOfFirstSpaceCharacter);
         cout << "firstNumberAsString: " << firstNumberAsString << endl;
         // Reference on how to convert string to integer using stoi() - (s to i):
         // https://www.geeksforgeeks.org/convert-string-to-int-in-cpp/
@@ -67,200 +92,133 @@ int main()
         firstNumber.push_back(stoi(firstNumberAsString));
         cout << "firstNumber as an integer: " << firstNumber[j] << endl;
         
-        int indexOfLastSpaceCharacter = timesTables[randomIndex].find_last_of(' ');
+        int indexOfLastSpaceCharacter = timesTablesManipulated[randomIndex].find_last_of(' ');
         cout << "indexOfLastSpaceCharacter: " << indexOfLastSpaceCharacter << endl;
         // Reference to find the length of a string:
         // https://www.w3schools.com/cpp/cpp_strings_length.asp
-        string secondNumberAsString = timesTables[randomIndex].substr(indexOfLastSpaceCharacter + 1, timesTables[randomIndex].length() - (indexOfLastSpaceCharacter + 1));
+        string secondNumberAsString = timesTablesManipulated[randomIndex].substr(indexOfLastSpaceCharacter + 1, timesTablesManipulated[randomIndex].length() - (indexOfLastSpaceCharacter + 1));
         cout << "secondNumberAsString: " << secondNumberAsString << endl;
         secondNumber.push_back(stoi(secondNumberAsString));
         cout << "secondNumber as an integer: " << secondNumber[j] << endl;
 
-        randomAnswer.push_back(timesTablesAnswers[randomAnswerIndex]);
+        randomAnswer.push_back(timesTablesManipulatedAnswers[randomAnswerIndex]);
         
         // Reference on how to remove element at a specific index from a vector:
         // https://stackoverflow.com/questions/875103/how-do-i-erase-an-element-from-stdvector-by-index
         // vec.erase(vec.begin() + index);
-        timesTables.erase(timesTables.begin() + randomIndex);
-        timesTablesAnswers.erase(timesTablesAnswers.begin() + randomAnswerIndex);
+        timesTablesManipulated.erase(timesTablesManipulated.begin() + randomIndex);
+        timesTablesManipulatedAnswers.erase(timesTablesManipulatedAnswers.begin() + randomAnswerIndex);
         
         // Display all elements in the timesTable vector.
         // Reference to iterate through each element in a vector:
         // https://www.w3schools.com/cpp/cpp_vectors.asp
         cout << "Elements left in the times tables vector: " << endl;
-        for (int i = 0; i < timesTables.size(); i++) {
-            cout << timesTables[i] << "\n";
+        // cout << "timesTablesManipulated.size() - here: " << timesTablesManipulated.size();
+        for (int i = 0; i < timesTablesManipulated.size(); i++) {
+            cout << timesTablesManipulated[i] << "\n";
         }
 
         j++;
     }
 
-    // NOTE: SQUARE 1 TIMES TABLE DOES NOT NECESSARY GO WITH SQUARE 1 ANSWER, ETC.
+    const Font font("C:/Users/Dallin_Stephens/Documents/BYU-I Courses/CSE 310 Applied Programming/CPlusPlusTimesTablesGame/arialuni.ttf");
 
-    // Square 1 Times Table
-    RectangleShape square1TimesTable({120.f, 120.f});
-    square1TimesTable.setFillColor(Color(255, 255, 179)); // shade of yellow
-    square1TimesTable.setPosition({5.f, 5.f}); // set the absolute position of the square
-    int timesTable1FirstNumber = firstNumber[0];
-    int timesTable1SecondNumber = secondNumber[0];
-    string timesTable1 = to_string(timesTable1FirstNumber) + " X " + to_string(timesTable1SecondNumber);
-    Text text1TimesTable(font); // a font is required to make a text object   
-    text1TimesTable.setString(timesTable1); // set the string to display    
-    text1TimesTable.setPosition({30.f, 50.f}); // set the absolute position of the text1TimesTable
-    text1TimesTable.setCharacterSize(24); // set the character size in pixels, not points!        
-    text1TimesTable.setFillColor(Color::Black); // set the color        
-    text1TimesTable.setStyle(Text::Bold); // set the text style
+    // Reference on declaring more than one variable in the same statement:
+    // https://www.w3schools.com/cpp/cpp_variables_multiple.asp
+    // RectangleShape square1TimesTable, square2TimesTable, square3TimesTable, square4TimesTable;
+    // vector<RectangleShape> squareTimesTable = {square1TimesTable, square2TimesTable, square3TimesTable, square4TimesTable};
+    vector<RectangleShape> squareTimesTable(timesTables.size());
 
-    // Square 2 Times Table
-    RectangleShape square2TimesTable({120.f, 120.f});
-    square2TimesTable.setFillColor(Color(255, 255, 179)); // shade of yellow
-    square2TimesTable.setPosition({5.f, 5.f}); // set the absolute position of the square
-    int timesTable2FirstNumber = firstNumber[1];
-    int timesTable2SecondNumber = secondNumber[1];
-    string timesTable2 = to_string(timesTable2FirstNumber) + " X " + to_string(timesTable2SecondNumber);
-    Text text2TimesTable(font); // a font is required to make a text object   
-    text2TimesTable.setString(timesTable2); // set the string to display    
-    text2TimesTable.setPosition({30.f, 50.f}); // set the absolute position of the text2TimesTable
-    text2TimesTable.setCharacterSize(24); // set the character size in pixels, not points!        
-    text2TimesTable.setFillColor(Color::Black); // set the color        
-    text2TimesTable.setStyle(Text::Bold); // set the text style
+    vector<int> timesTableFirstNumber(timesTables.size());
 
-    // Square 3 Times Table
-    RectangleShape square3TimesTable({120.f, 120.f});
-    square3TimesTable.setFillColor(Color(255, 255, 179)); // shade of yellow
-    square3TimesTable.setPosition({5.f, 5.f}); // set the absolute position of the square
-    int timesTable3FirstNumber = firstNumber[2];
-    int timesTable3SecondNumber = secondNumber[2];
-    string timesTable3 = to_string(timesTable3FirstNumber) + " X " + to_string(timesTable3SecondNumber);
-    Text text3TimesTable(font); // a font is required to make a text object   
-    text3TimesTable.setString(timesTable3); // set the string to display    
-    text3TimesTable.setPosition({30.f, 50.f}); // set the absolute position of the text3TimesTable
-    text3TimesTable.setCharacterSize(24); // set the character size in pixels, not points!        
-    text3TimesTable.setFillColor(Color::Black); // set the color        
-    text3TimesTable.setStyle(Text::Bold); // set the text style
-
-    // Square 4 Times Table
-    RectangleShape square4TimesTable({120.f, 120.f});
-    square4TimesTable.setFillColor(Color(255, 255, 179)); // shade of yellow
-    square4TimesTable.setPosition({5.f, 5.f}); // set the absolute position of the square
-    int timesTable4FirstNumber = firstNumber[3];
-    int timesTable4SecondNumber = secondNumber[3];
-    string timesTable4 = to_string(timesTable4FirstNumber) + " X " + to_string(timesTable4SecondNumber);
-    Text text4TimesTable(font); // a font is required to make a text object   
-    text4TimesTable.setString(timesTable4); // set the string to display    
-    text4TimesTable.setPosition({30.f, 50.f}); // set the absolute position of the text4TimesTable
-    text4TimesTable.setCharacterSize(24); // set the character size in pixels, not points!        
-    text4TimesTable.setFillColor(Color::Black); // set the color        
-    text4TimesTable.setStyle(Text::Bold); // set the text style    
+    vector<int> timesTableSecondNumber(timesTables.size());
     
-    // Square 1 Answer
-    RectangleShape square1Answer({120.f, 120.f});
-    square1Answer.setFillColor(Color(255, 212, 128)); // shade of orange
-    square1Answer.setPosition({130 * 0 + 125.f, 130.f}); // set the absolute position of the square
-    int answer1 = randomAnswer[0];
-    Text text1Answer(font); // a font is required to make a text object
-    // Reference on how to convert number to string: https://www.geeksforgeeks.org/converting-number-to-string-in-cpp/ 
-    text1Answer.setString(to_string(answer1)); // set the string to display    
-    text1Answer.setPosition({150 + 30.f, 120 + 50.f}); // set the absolute position of the text1TimesTable
-    text1Answer.setCharacterSize(24); // set the character size in pixels, not points!        
-    text1Answer.setFillColor(Color::Black); // set the color        
-    text1Answer.setStyle(Text::Bold); // set the text style
+    vector<string> timesTable(timesTables.size());
+
+    // Text text1TimesTable(font), text2TimesTable(font), text3TimesTable(font), text4TimesTable(font); // a font is required to make a text object
+    // vector<Text> textTimesTable = {text1TimesTable, text2TimesTable, text3TimesTable, text4TimesTable};
+    vector<Text> textTimesTable(timesTables.size(), font);
+
+    vector<RectangleShape> squareAnswer(timesTables.size());
+
+    vector<int> answer(timesTables.size());
+
+    vector<Text> textAnswer(timesTables.size(), font); 
+
+    // cout << "timesTables.size(): " << timesTables.size();
+
+    // Reference for for loop: https://www.w3schools.com/cpp/cpp_for_loop.asp
+    for (int i = 0; i < timesTables.size(); i++) {
+        // NOTE: SQUARE i TIMES TABLE DOES NOT NECESSARY GO WITH SQUARE i ANSWER, ETC.
+
+        // Square i Times Table
+        squareTimesTable[i].setSize({120.f, 120.f});
+        squareTimesTable[i].setFillColor(Color(255, 255, 179)); // shade of yellow
+        squareTimesTable[i].setPosition({5.f, 5.f}); // set the absolute position of the square
+        timesTableFirstNumber[i] = firstNumber[i];
+        timesTableSecondNumber[i] = secondNumber[i];
+        timesTable[i] = to_string(timesTableFirstNumber[i]) + " X " + to_string(timesTableSecondNumber[i]);
+        // textTimesTable[i].setFont(font); // a font is required to make a text object 
+        textTimesTable[i].setString(timesTable[i]); // set the string to display    
+        textTimesTable[i].setPosition({30.f, 50.f}); // set the absolute position of the textTimesTable[i]
+        textTimesTable[i].setCharacterSize(24); // set the character size in pixels, not points!        
+        textTimesTable[i].setFillColor(Color::Black); // set the color        
+        textTimesTable[i].setStyle(Text::Bold); // set the text style  
     
-    // Square 2 Answer
-    RectangleShape square2Answer({120.f, 120.f});
-    square2Answer.setFillColor(Color(255, 212, 128));
-    square2Answer.setPosition({130 * 1 + 125.f, 130.f});
-    int answer2 = randomAnswer[1];
-    Text text2Answer(font);
-    text2Answer.setString(to_string(answer2));    
-    text2Answer.setPosition({130 * 1 + 150 + 30.f, 120 + 50.f});
-    text2Answer.setCharacterSize(24);       
-    text2Answer.setFillColor(Color::Black);       
-    text2Answer.setStyle(Text::Bold);
-
-    // Square 3 Answer
-    RectangleShape square3Answer({120.f, 120.f});
-    square3Answer.setFillColor(Color(255, 212, 128));
-    square3Answer.setPosition({130 * 2 + 125.f, 130.f});
-    int answer3 = randomAnswer[2];
-    Text text3Answer(font);
-    text3Answer.setString(to_string(answer3));    
-    text3Answer.setPosition({130 * 2 + 150 + 30.f, 120 + 50.f});
-    text3Answer.setCharacterSize(24);       
-    text3Answer.setFillColor(Color::Black);       
-    text3Answer.setStyle(Text::Bold);
-
-    // Square 4 Answer
-    RectangleShape square4Answer({120.f, 120.f});
-    square4Answer.setFillColor(Color(255, 212, 128));
-    square4Answer.setPosition({130 * 3 + 125.f, 130.f});
-    int answer4 = randomAnswer[3];
-    Text text4Answer(font);
-    text4Answer.setString(to_string(answer4));    
-    text4Answer.setPosition({130 * 3 + 150 + 30.f, 120 + 50.f});
-    text4Answer.setCharacterSize(24);       
-    text4Answer.setFillColor(Color::Black);       
-    text4Answer.setStyle(Text::Bold);  
+        // Square i Answer
+        squareAnswer[i].setSize({120.f, 120.f});
+        squareAnswer[i].setFillColor(Color(255, 212, 128)); // shade of orange
+        squareAnswer[i].setPosition({130 * i + 125.f, 130.f}); // set the absolute position of the square
+        answer[i] = randomAnswer[i];
+        // Reference on how to convert number to string: https://www.geeksforgeeks.org/converting-number-to-string-in-cpp/
+        // textAnswer[i].setFont(font); 
+        textAnswer[i].setString(to_string(answer[i])); // set the string to display    
+        textAnswer[i].setPosition({130 * i + 150 + 30.f, 120 + 50.f}); // set the absolute position of the text1TimesTable
+        textAnswer[i].setCharacterSize(24); // set the character size in pixels, not points!        
+        textAnswer[i].setFillColor(Color::Black); // set the color        
+        textAnswer[i].setStyle(Text::Bold); // set the text style
+    }
+  
+    // vector<bool> draggable = {false, false, false, false};
+    vector<bool> draggable(timesTables.size(), false);    
 
     while (window.isOpen())
     {
         // get the local mouse position (relative to a window)
         Vector2i localPosition = Mouse::getPosition(window);
 
-        // Square 1 Times Table Position
-        Vector2f square1TimesTablePosition = square1TimesTable.getPosition();
-        Vector2f text1TimesTablePosition = text1TimesTable.getPosition();
-        
-        // Square 2 Times Table Position
-        Vector2f square2TimesTablePosition = square2TimesTable.getPosition();
-        Vector2f text2TimesTablePosition = text2TimesTable.getPosition();
+        // Initiating Square Times Table Position Variables
+        // Vector2f square1TimesTablePosition, square2TimesTablePosition, square3TimesTablePosition, square4TimesTablePosition;
+        // vector<Vector2f> squareTimesTablePosition = {square1TimesTablePosition, square2TimesTablePosition, square3TimesTablePosition, square4TimesTablePosition};
+        vector<Vector2f> squareTimesTablePosition(timesTables.size());
+        vector<Vector2f> textTimesTablePosition(timesTables.size());
 
-        // Square 3 Times Table Position
-        Vector2f square3TimesTablePosition = square3TimesTable.getPosition();
-        Vector2f text3TimesTablePosition = text3TimesTable.getPosition();
-        
-        // Square 4 Times Table Position
-        Vector2f square4TimesTablePosition = square4TimesTable.getPosition();
-        Vector2f text4TimesTablePosition = text4TimesTable.getPosition();         
+        // Initiating Square Answer Position Variables
+        vector<Vector2f> squareAnswerPosition(timesTables.size());
 
-        // Square 1 Answer Position
-        Vector2f square1AnswerPosition = square1Answer.getPosition();
+        for (int i = 0; i < timesTables.size(); i++) {
+            // Square i Times Table Position
+            squareTimesTablePosition[i] = squareTimesTable[i].getPosition();
+            textTimesTablePosition[i] = textTimesTable[i].getPosition();
 
-        // Square 2 Answer Position
-        Vector2f square2AnswerPosition = square2Answer.getPosition();
-
-        // Square 3 Answer Position
-        Vector2f square3AnswerPosition = square3Answer.getPosition();
-
-        // Square 4 Answer Position
-        Vector2f square4AnswerPosition = square4Answer.getPosition();
+            // Square i Answer Position
+            squareAnswerPosition[i] = squareAnswer[i].getPosition();
+        }
 
         while (const std::optional event = window.pollEvent())
         {
-            bool draggable1;
-            bool draggable2;
-            bool draggable3;
-            bool draggable4;
+            // cout << "in loop timesTables.size(): " << timesTables.size();
             
             // When cursor is moved
             if (const auto* mouseMoved = event->getIf<sf::Event::MouseMoved>())
             {
-                if (draggable1) {
-                    square1TimesTable.setPosition({static_cast<float>(localPosition.x) + 0.f, static_cast<float>(localPosition.y) + 0.f});
-                    text1TimesTable.setPosition({static_cast<float>(localPosition.x) + 30.f, static_cast<float>(localPosition.y) + 50.f});
-                }
-                else if (draggable2) {
-                    square2TimesTable.setPosition({static_cast<float>(localPosition.x) + 0.f, static_cast<float>(localPosition.y) + 0.f});
-                    text2TimesTable.setPosition({static_cast<float>(localPosition.x) + 30.f, static_cast<float>(localPosition.y) + 50.f});
-                }
-                else if (draggable3) {
-                    square3TimesTable.setPosition({static_cast<float>(localPosition.x) + 0.f, static_cast<float>(localPosition.y) + 0.f});
-                    text3TimesTable.setPosition({static_cast<float>(localPosition.x) + 30.f, static_cast<float>(localPosition.y) + 50.f});
-                }
-                else if (draggable4) {
-                    square4TimesTable.setPosition({static_cast<float>(localPosition.x) + 0.f, static_cast<float>(localPosition.y) + 0.f});
-                    text4TimesTable.setPosition({static_cast<float>(localPosition.x) + 30.f, static_cast<float>(localPosition.y) + 50.f});
-                }                                
+                for (int i = 0; i < timesTables.size(); i++) {
+                    if (draggable[i]) {
+                        squareTimesTable[i].setPosition({static_cast<float>(localPosition.x) + 0.f, static_cast<float>(localPosition.y) + 0.f});
+                        textTimesTable[i].setPosition({static_cast<float>(localPosition.x) + 30.f, static_cast<float>(localPosition.y) + 50.f});
+                        break;
+                    }
+                }                               
             }            
 
             // When button is pressed
@@ -268,47 +226,19 @@ int main()
             {
                 if (mouseButtonPressed->button == sf::Mouse::Button::Left)
                 {
-                    if (localPosition.x >= square1TimesTablePosition.x && localPosition.x <= square1TimesTablePosition.x + 125 && 
-                        localPosition.y >= square1TimesTablePosition.y && localPosition.y <= square1TimesTablePosition.y + 125) 
-                    {
-                        draggable1 = true;
-                        // Reference for color picker: https://www.w3schools.com/colors/colors_picker.asp
-                        square1TimesTable.setFillColor(Color(255, 255, 179)); // shade of yellow
-                        text1TimesTable.setString(timesTable1);
-                        text1TimesTable.setCharacterSize(24);
-                        text1TimesTable.setFillColor(Color::Black);   
-                        text1TimesTable.setPosition({static_cast<float>(square1TimesTablePosition.x) + 30.f, static_cast<float>(square1TimesTablePosition.y) + 50.f});
-                    }
-                    else if (localPosition.x >= square2TimesTablePosition.x && localPosition.x <= square2TimesTablePosition.x + 125 && 
-                        localPosition.y >= square2TimesTablePosition.y && localPosition.y <= square2TimesTablePosition.y + 125) 
-                    {
-                        draggable2 = true;
-                        // Reference for color picker: https://www.w3schools.com/colors/colors_picker.asp
-                        square2TimesTable.setFillColor(Color(255, 255, 179)); // shade of yellow
-                        text2TimesTable.setString(timesTable2);
-                        text2TimesTable.setCharacterSize(24);
-                        text2TimesTable.setFillColor(Color::Black);   
-                        text2TimesTable.setPosition({static_cast<float>(square2TimesTablePosition.x) + 30.f, static_cast<float>(square2TimesTablePosition.y) + 50.f});
-                    }
-                    else if (localPosition.x >= square3TimesTablePosition.x && localPosition.x <= square3TimesTablePosition.x + 125 && 
-                        localPosition.y >= square3TimesTablePosition.y && localPosition.y <= square3TimesTablePosition.y + 125) 
-                    {
-                        draggable3 = true;
-                        square3TimesTable.setFillColor(Color(255, 255, 179)); // shade of yellow
-                        text3TimesTable.setString(timesTable3);
-                        text3TimesTable.setCharacterSize(24);
-                        text3TimesTable.setFillColor(Color::Black);   
-                        text3TimesTable.setPosition({static_cast<float>(square3TimesTablePosition.x) + 30.f, static_cast<float>(square3TimesTablePosition.y) + 50.f});
-                    }
-                    else if (localPosition.x >= square4TimesTablePosition.x && localPosition.x <= square4TimesTablePosition.x + 125 && 
-                        localPosition.y >= square4TimesTablePosition.y && localPosition.y <= square4TimesTablePosition.y + 125) 
-                    {
-                        draggable4 = true;
-                        square4TimesTable.setFillColor(Color(255, 255, 179)); // shade of yellow
-                        text4TimesTable.setString(timesTable4);
-                        text4TimesTable.setCharacterSize(24);
-                        text4TimesTable.setFillColor(Color::Black);   
-                        text4TimesTable.setPosition({static_cast<float>(square4TimesTablePosition.x) + 30.f, static_cast<float>(square4TimesTablePosition.y) + 50.f});
+                    for (int i = 0; i < timesTables.size(); i++) {
+                        if (localPosition.x >= squareTimesTablePosition[i].x && localPosition.x <= squareTimesTablePosition[i].x + 125 && 
+                            localPosition.y >= squareTimesTablePosition[i].y && localPosition.y <= squareTimesTablePosition[i].y + 125) 
+                        {
+                            draggable[i] = true;
+                            // Reference for color picker: https://www.w3schools.com/colors/colors_picker.asp
+                            squareTimesTable[i].setFillColor(Color(255, 255, 179)); // shade of yellow
+                            textTimesTable[i].setString(timesTable[i]);
+                            textTimesTable[i].setCharacterSize(24);
+                            textTimesTable[i].setFillColor(Color::Black);   
+                            textTimesTable[i].setPosition({static_cast<float>(squareTimesTablePosition[i].x) + 30.f, static_cast<float>(squareTimesTablePosition[i].y) + 50.f});
+                            break;
+                        }                        
                     }
                     // std::cout << "the right button was pressed" << std::endl;
                     // std::cout << "mouse x: " << mouseButtonPressed->position.x << std::endl;
@@ -320,376 +250,41 @@ int main()
             if (const auto* mouseButtonReleased = event->getIf<sf::Event::MouseButtonReleased>())
             {
                 if (mouseButtonReleased->button == sf::Mouse::Button::Left)
-                {                    
-                    draggable1 = false;
-                    draggable2 = false;
-                    draggable3 = false;
-                    draggable4 = false;
-
-                    // SQUARE 1 TIMES TABLE
-                    if (square1TimesTablePosition.x >= square1AnswerPosition.x - 25 && square1TimesTablePosition.x <= square1AnswerPosition.x + 25 && 
-                        square1TimesTablePosition.y >= square1AnswerPosition.y - 25 && square1TimesTablePosition.y <= square1AnswerPosition.y + 25 &&
-                        timesTable1FirstNumber * timesTable1SecondNumber == answer1) 
-                    {
-                        square1TimesTable.setFillColor(Color::Green);
-                        // Reference for unicode checkmark: https://en.wikipedia.org/wiki/List_of_Unicode_characters
-                        text1TimesTable.setString(L"\u2713");
-                        text1TimesTable.setCharacterSize(75);
-                        text1TimesTable.setFillColor(Color::White);   
-                        text1TimesTable.setPosition({static_cast<float>(square1AnswerPosition.x) + 40.f, static_cast<float>(square1AnswerPosition.y) + 10.f});                   
-                        square1TimesTable.setPosition({static_cast<float>(square1AnswerPosition.x) + 0.f, static_cast<float>(square1AnswerPosition.y) + 0.f});
-                    }
-                    else if (square1TimesTablePosition.x >= square1AnswerPosition.x - 25 && square1TimesTablePosition.x <= square1AnswerPosition.x + 25 && 
-                        square1TimesTablePosition.y >= square1AnswerPosition.y - 25 && square1TimesTablePosition.y <= square1AnswerPosition.y + 25 &&
-                        timesTable1FirstNumber * timesTable1SecondNumber != answer1)
-                    {
-                        square1TimesTable.setFillColor(Color::Red);
-                        text1TimesTable.setString("X");
-                        text1TimesTable.setCharacterSize(75);
-                        text1TimesTable.setFillColor(Color::White);   
-                        text1TimesTable.setPosition({static_cast<float>(square1AnswerPosition.x) + 35.f, static_cast<float>(square1AnswerPosition.y) + 10.f});                   
-                        square1TimesTable.setPosition({static_cast<float>(square1AnswerPosition.x) + 0.f, static_cast<float>(square1AnswerPosition.y) + 0.f});
-                    }
-                    else if (square1TimesTablePosition.x >= square2AnswerPosition.x - 25 && square1TimesTablePosition.x <= square2AnswerPosition.x + 25 && 
-                        square1TimesTablePosition.y >= square2AnswerPosition.y - 25 && square1TimesTablePosition.y <= square2AnswerPosition.y + 25 &&
-                        timesTable1FirstNumber * timesTable1SecondNumber == answer2) 
-                    {
-                        square1TimesTable.setFillColor(Color::Green);
-                        text1TimesTable.setString(L"\u2713");
-                        text1TimesTable.setCharacterSize(75);
-                        text1TimesTable.setFillColor(Color::White);   
-                        text1TimesTable.setPosition({static_cast<float>(square2AnswerPosition.x) + 40.f, static_cast<float>(square2AnswerPosition.y) + 10.f});                   
-                        square1TimesTable.setPosition({static_cast<float>(square2AnswerPosition.x) + 0.f, static_cast<float>(square2AnswerPosition.y) + 0.f});
-                    }    
-                    else if (square1TimesTablePosition.x >= square2AnswerPosition.x - 25 && square1TimesTablePosition.x <= square2AnswerPosition.x + 25 && 
-                        square1TimesTablePosition.y >= square2AnswerPosition.y - 25 && square1TimesTablePosition.y <= square2AnswerPosition.y + 25 &&
-                        timesTable1FirstNumber * timesTable1SecondNumber != answer2) 
-                    {
-                        square1TimesTable.setFillColor(Color::Red);
-                        text1TimesTable.setString("X");
-                        text1TimesTable.setCharacterSize(75);
-                        text1TimesTable.setFillColor(Color::White);   
-                        text1TimesTable.setPosition({static_cast<float>(square2AnswerPosition.x) + 35.f, static_cast<float>(square2AnswerPosition.y) + 10.f});                   
-                        square1TimesTable.setPosition({static_cast<float>(square2AnswerPosition.x) + 0.f, static_cast<float>(square2AnswerPosition.y) + 0.f});
-                    }
-                    else if (square1TimesTablePosition.x >= square3AnswerPosition.x - 25 && square1TimesTablePosition.x <= square3AnswerPosition.x + 25 && 
-                        square1TimesTablePosition.y >= square3AnswerPosition.y - 25 && square1TimesTablePosition.y <= square3AnswerPosition.y + 25 &&
-                        timesTable1FirstNumber * timesTable1SecondNumber == answer3) 
-                    {
-                        square1TimesTable.setFillColor(Color::Green);
-                        text1TimesTable.setString(L"\u2713");
-                        text1TimesTable.setCharacterSize(75);
-                        text1TimesTable.setFillColor(Color::White);   
-                        text1TimesTable.setPosition({static_cast<float>(square3AnswerPosition.x) + 40.f, static_cast<float>(square3AnswerPosition.y) + 10.f});                   
-                        square1TimesTable.setPosition({static_cast<float>(square3AnswerPosition.x) + 0.f, static_cast<float>(square3AnswerPosition.y) + 0.f});
-                    }    
-                    else if (square1TimesTablePosition.x >= square3AnswerPosition.x - 25 && square1TimesTablePosition.x <= square3AnswerPosition.x + 25 && 
-                        square1TimesTablePosition.y >= square3AnswerPosition.y - 25 && square1TimesTablePosition.y <= square3AnswerPosition.y + 25 &&
-                        timesTable1FirstNumber * timesTable1SecondNumber != answer3) 
-                    {
-                        square1TimesTable.setFillColor(Color::Red);
-                        text1TimesTable.setString("X");
-                        text1TimesTable.setCharacterSize(75);
-                        text1TimesTable.setFillColor(Color::White);   
-                        text1TimesTable.setPosition({static_cast<float>(square3AnswerPosition.x) + 35.f, static_cast<float>(square3AnswerPosition.y) + 10.f});                   
-                        square1TimesTable.setPosition({static_cast<float>(square3AnswerPosition.x) + 0.f, static_cast<float>(square3AnswerPosition.y) + 0.f});
-                    }
-                    else if (square1TimesTablePosition.x >= square4AnswerPosition.x - 25 && square1TimesTablePosition.x <= square4AnswerPosition.x + 25 && 
-                        square1TimesTablePosition.y >= square4AnswerPosition.y - 25 && square1TimesTablePosition.y <= square4AnswerPosition.y + 25 &&
-                        timesTable1FirstNumber * timesTable1SecondNumber == answer4) 
-                    {
-                        square1TimesTable.setFillColor(Color::Green);
-                        text1TimesTable.setString(L"\u2713");
-                        text1TimesTable.setCharacterSize(75);
-                        text1TimesTable.setFillColor(Color::White);   
-                        text1TimesTable.setPosition({static_cast<float>(square4AnswerPosition.x) + 40.f, static_cast<float>(square4AnswerPosition.y) + 10.f});                   
-                        square1TimesTable.setPosition({static_cast<float>(square4AnswerPosition.x) + 0.f, static_cast<float>(square4AnswerPosition.y) + 0.f});
-                    }    
-                    else if (square1TimesTablePosition.x >= square4AnswerPosition.x - 25 && square1TimesTablePosition.x <= square4AnswerPosition.x + 25 && 
-                        square1TimesTablePosition.y >= square4AnswerPosition.y - 25 && square1TimesTablePosition.y <= square4AnswerPosition.y + 25 &&
-                        timesTable1FirstNumber * timesTable1SecondNumber != answer4) 
-                    {
-                        square1TimesTable.setFillColor(Color::Red);
-                        text1TimesTable.setString("X");
-                        text1TimesTable.setCharacterSize(75);
-                        text1TimesTable.setFillColor(Color::White);   
-                        text1TimesTable.setPosition({static_cast<float>(square4AnswerPosition.x) + 35.f, static_cast<float>(square4AnswerPosition.y) + 10.f});                   
-                        square1TimesTable.setPosition({static_cast<float>(square4AnswerPosition.x) + 0.f, static_cast<float>(square4AnswerPosition.y) + 0.f});
+                {   
+                    for (int i = 0; i < timesTables.size(); i++) {
+                        draggable[i] = false;
                     }
 
-                    // SQUARE 2 TIMES TABLE
-                    if (square2TimesTablePosition.x >= square1AnswerPosition.x - 25 && square2TimesTablePosition.x <= square1AnswerPosition.x + 25 && 
-                        square2TimesTablePosition.y >= square1AnswerPosition.y - 25 && square2TimesTablePosition.y <= square1AnswerPosition.y + 25 &&
-                        timesTable2FirstNumber * timesTable2SecondNumber == answer1) 
-                    {
-                        square2TimesTable.setFillColor(Color::Green);
-                        // Reference for unicode checkmark: https://en.wikipedia.org/wiki/List_of_Unicode_characters
-                        text2TimesTable.setString(L"\u2713");
-                        text2TimesTable.setCharacterSize(75);
-                        text2TimesTable.setFillColor(Color::White);   
-                        text2TimesTable.setPosition({static_cast<float>(square1AnswerPosition.x) + 40.f, static_cast<float>(square1AnswerPosition.y) + 10.f});                   
-                        square2TimesTable.setPosition({static_cast<float>(square1AnswerPosition.x) + 0.f, static_cast<float>(square1AnswerPosition.y) + 0.f});
+                    for (int i = 0; i < timesTables.size(); i++) {
+                        for (int j = 0; j < timesTables.size(); j++) {
+                            // SQUARE i TIMES TABLE
+                            if (squareTimesTablePosition[i].x >= squareAnswerPosition[j].x - 25 && squareTimesTablePosition[i].x <= squareAnswerPosition[j].x + 25 && 
+                                squareTimesTablePosition[i].y >= squareAnswerPosition[j].y - 25 && squareTimesTablePosition[i].y <= squareAnswerPosition[j].y + 25 &&
+                                timesTableFirstNumber[i] * timesTableSecondNumber[i] == answer[j])
+                            {
+                                squareTimesTable[i].setFillColor(Color::Green);
+                                // Reference for unicode checkmark: https://en.wikipedia.org/wiki/List_of_Unicode_characters
+                                textTimesTable[i].setString(L"\u2713");
+                                textTimesTable[i].setCharacterSize(75);
+                                textTimesTable[i].setFillColor(Color::White);   
+                                textTimesTable[i].setPosition({static_cast<float>(squareAnswerPosition[j].x) + 40.f, static_cast<float>(squareAnswerPosition[j].y) + 10.f});                   
+                                squareTimesTable[i].setPosition({static_cast<float>(squareAnswerPosition[j].x) + 0.f, static_cast<float>(squareAnswerPosition[j].y) + 0.f});
+                                break;
+                            }
+                            else if (squareTimesTablePosition[i].x >= squareAnswerPosition[j].x - 25 && squareTimesTablePosition[i].x <= squareAnswerPosition[j].x + 25 && 
+                                squareTimesTablePosition[i].y >= squareAnswerPosition[j].y - 25 && squareTimesTablePosition[i].y <= squareAnswerPosition[j].y + 25 &&
+                                timesTableFirstNumber[i] * timesTableSecondNumber[i] != answer[j])
+                            {
+                                squareTimesTable[i].setFillColor(Color::Red);
+                                textTimesTable[i].setString("X");
+                                textTimesTable[i].setCharacterSize(75);
+                                textTimesTable[i].setFillColor(Color::White);   
+                                textTimesTable[i].setPosition({static_cast<float>(squareAnswerPosition[j].x) + 35.f, static_cast<float>(squareAnswerPosition[j].y) + 10.f});                   
+                                squareTimesTable[i].setPosition({static_cast<float>(squareAnswerPosition[j].x) + 0.f, static_cast<float>(squareAnswerPosition[j].y) + 0.f});
+                                break;
+                            }
+                        }
                     }
-                    else if (square2TimesTablePosition.x >= square1AnswerPosition.x - 25 && square2TimesTablePosition.x <= square1AnswerPosition.x + 25 && 
-                        square2TimesTablePosition.y >= square1AnswerPosition.y - 25 && square2TimesTablePosition.y <= square1AnswerPosition.y + 25 &&
-                        timesTable2FirstNumber * timesTable2SecondNumber != answer1) 
-                    {
-                        square2TimesTable.setFillColor(Color::Red);
-                        text2TimesTable.setString("X");
-                        text2TimesTable.setCharacterSize(75);
-                        text2TimesTable.setFillColor(Color::White);   
-                        text2TimesTable.setPosition({static_cast<float>(square1AnswerPosition.x) + 35.f, static_cast<float>(square1AnswerPosition.y) + 10.f});                   
-                        square2TimesTable.setPosition({static_cast<float>(square1AnswerPosition.x) + 0.f, static_cast<float>(square1AnswerPosition.y) + 0.f});
-                    }
-                    else if (square2TimesTablePosition.x >= square2AnswerPosition.x - 25 && square2TimesTablePosition.x <= square2AnswerPosition.x + 25 && 
-                        square2TimesTablePosition.y >= square2AnswerPosition.y - 25 && square2TimesTablePosition.y <= square2AnswerPosition.y + 25 &&
-                        timesTable2FirstNumber * timesTable2SecondNumber == answer2) 
-                    {
-                        square2TimesTable.setFillColor(Color::Green);
-                        text2TimesTable.setString(L"\u2713");
-                        text2TimesTable.setCharacterSize(75);
-                        text2TimesTable.setFillColor(Color::White);   
-                        text2TimesTable.setPosition({static_cast<float>(square2AnswerPosition.x) + 40.f, static_cast<float>(square2AnswerPosition.y) + 10.f});                   
-                        square2TimesTable.setPosition({static_cast<float>(square2AnswerPosition.x) + 0.f, static_cast<float>(square2AnswerPosition.y) + 0.f});
-                    }    
-                    else if (square2TimesTablePosition.x >= square2AnswerPosition.x - 25 && square2TimesTablePosition.x <= square2AnswerPosition.x + 25 && 
-                        square2TimesTablePosition.y >= square2AnswerPosition.y - 25 && square2TimesTablePosition.y <= square2AnswerPosition.y + 25 &&
-                        timesTable2FirstNumber * timesTable2SecondNumber != answer2) 
-                    {
-                        square2TimesTable.setFillColor(Color::Red);
-                        text2TimesTable.setString("X");
-                        text2TimesTable.setCharacterSize(75);
-                        text2TimesTable.setFillColor(Color::White);   
-                        text2TimesTable.setPosition({static_cast<float>(square2AnswerPosition.x) + 35.f, static_cast<float>(square2AnswerPosition.y) + 10.f});                   
-                        square2TimesTable.setPosition({static_cast<float>(square2AnswerPosition.x) + 0.f, static_cast<float>(square2AnswerPosition.y) + 0.f});
-                    }
-                    else if (square2TimesTablePosition.x >= square3AnswerPosition.x - 25 && square2TimesTablePosition.x <= square3AnswerPosition.x + 25 && 
-                        square2TimesTablePosition.y >= square3AnswerPosition.y - 25 && square2TimesTablePosition.y <= square3AnswerPosition.y + 25 &&
-                        timesTable2FirstNumber * timesTable2SecondNumber == answer3) 
-                    {
-                        square2TimesTable.setFillColor(Color::Green);
-                        text2TimesTable.setString(L"\u2713");
-                        text2TimesTable.setCharacterSize(75);
-                        text2TimesTable.setFillColor(Color::White);   
-                        text2TimesTable.setPosition({static_cast<float>(square3AnswerPosition.x) + 40.f, static_cast<float>(square3AnswerPosition.y) + 10.f});                   
-                        square2TimesTable.setPosition({static_cast<float>(square3AnswerPosition.x) + 0.f, static_cast<float>(square3AnswerPosition.y) + 0.f});
-                    }    
-                    else if (square2TimesTablePosition.x >= square3AnswerPosition.x - 25 && square2TimesTablePosition.x <= square3AnswerPosition.x + 25 && 
-                        square2TimesTablePosition.y >= square3AnswerPosition.y - 25 && square2TimesTablePosition.y <= square3AnswerPosition.y + 25 &&
-                        timesTable2FirstNumber * timesTable2SecondNumber != answer3) 
-                    {
-                        square2TimesTable.setFillColor(Color::Red);
-                        text2TimesTable.setString("X");
-                        text2TimesTable.setCharacterSize(75);
-                        text2TimesTable.setFillColor(Color::White);   
-                        text2TimesTable.setPosition({static_cast<float>(square3AnswerPosition.x) + 35.f, static_cast<float>(square3AnswerPosition.y) + 10.f});                   
-                        square2TimesTable.setPosition({static_cast<float>(square3AnswerPosition.x) + 0.f, static_cast<float>(square3AnswerPosition.y) + 0.f});
-                    }
-                    else if (square2TimesTablePosition.x >= square4AnswerPosition.x - 25 && square2TimesTablePosition.x <= square4AnswerPosition.x + 25 && 
-                        square2TimesTablePosition.y >= square4AnswerPosition.y - 25 && square2TimesTablePosition.y <= square4AnswerPosition.y + 25 &&
-                        timesTable2FirstNumber * timesTable2SecondNumber == answer4) 
-                    {
-                        square2TimesTable.setFillColor(Color::Green);
-                        text2TimesTable.setString(L"\u2713");
-                        text2TimesTable.setCharacterSize(75);
-                        text2TimesTable.setFillColor(Color::White);   
-                        text2TimesTable.setPosition({static_cast<float>(square4AnswerPosition.x) + 40.f, static_cast<float>(square4AnswerPosition.y) + 10.f});                   
-                        square2TimesTable.setPosition({static_cast<float>(square4AnswerPosition.x) + 0.f, static_cast<float>(square4AnswerPosition.y) + 0.f});
-                    }    
-                    else if (square2TimesTablePosition.x >= square4AnswerPosition.x - 25 && square2TimesTablePosition.x <= square4AnswerPosition.x + 25 && 
-                        square2TimesTablePosition.y >= square4AnswerPosition.y - 25 && square2TimesTablePosition.y <= square4AnswerPosition.y + 25 &&
-                        timesTable2FirstNumber * timesTable2SecondNumber != answer4) 
-                    {
-                        square2TimesTable.setFillColor(Color::Red);
-                        text2TimesTable.setString("X");
-                        text2TimesTable.setCharacterSize(75);
-                        text2TimesTable.setFillColor(Color::White);   
-                        text2TimesTable.setPosition({static_cast<float>(square4AnswerPosition.x) + 35.f, static_cast<float>(square4AnswerPosition.y) + 10.f});                   
-                        square2TimesTable.setPosition({static_cast<float>(square4AnswerPosition.x) + 0.f, static_cast<float>(square4AnswerPosition.y) + 0.f});
-                    }
-
-                    // SQUARE 3 TIMES TABLE
-                    if (square3TimesTablePosition.x >= square1AnswerPosition.x - 25 && square3TimesTablePosition.x <= square1AnswerPosition.x + 25 && 
-                        square3TimesTablePosition.y >= square1AnswerPosition.y - 25 && square3TimesTablePosition.y <= square1AnswerPosition.y + 25 &&
-                        timesTable3FirstNumber * timesTable3SecondNumber == answer1) 
-                    {
-                        square3TimesTable.setFillColor(Color::Green);
-                        // Reference for unicode checkmark: https://en.wikipedia.org/wiki/List_of_Unicode_characters
-                        text3TimesTable.setString(L"\u2713");
-                        text3TimesTable.setCharacterSize(75);
-                        text3TimesTable.setFillColor(Color::White);   
-                        text3TimesTable.setPosition({static_cast<float>(square1AnswerPosition.x) + 40.f, static_cast<float>(square1AnswerPosition.y) + 10.f});                   
-                        square3TimesTable.setPosition({static_cast<float>(square1AnswerPosition.x) + 0.f, static_cast<float>(square1AnswerPosition.y) + 0.f});
-                    }
-                    else if (square3TimesTablePosition.x >= square1AnswerPosition.x - 25 && square3TimesTablePosition.x <= square1AnswerPosition.x + 25 && 
-                        square3TimesTablePosition.y >= square1AnswerPosition.y - 25 && square3TimesTablePosition.y <= square1AnswerPosition.y + 25 &&
-                        timesTable3FirstNumber * timesTable3SecondNumber != answer1) 
-                    {
-                        square3TimesTable.setFillColor(Color::Red);
-                        text3TimesTable.setString("X");
-                        text3TimesTable.setCharacterSize(75);
-                        text3TimesTable.setFillColor(Color::White);   
-                        text3TimesTable.setPosition({static_cast<float>(square1AnswerPosition.x) + 35.f, static_cast<float>(square1AnswerPosition.y) + 10.f});                   
-                        square3TimesTable.setPosition({static_cast<float>(square1AnswerPosition.x) + 0.f, static_cast<float>(square1AnswerPosition.y) + 0.f});
-                    }
-                    else if (square3TimesTablePosition.x >= square2AnswerPosition.x - 25 && square3TimesTablePosition.x <= square2AnswerPosition.x + 25 && 
-                        square3TimesTablePosition.y >= square2AnswerPosition.y - 25 && square3TimesTablePosition.y <= square2AnswerPosition.y + 25 &&
-                        timesTable3FirstNumber * timesTable3SecondNumber == answer2) 
-                    {
-                        square3TimesTable.setFillColor(Color::Green);
-                        text3TimesTable.setString(L"\u2713");
-                        text3TimesTable.setCharacterSize(75);
-                        text3TimesTable.setFillColor(Color::White);   
-                        text3TimesTable.setPosition({static_cast<float>(square2AnswerPosition.x) + 40.f, static_cast<float>(square2AnswerPosition.y) + 10.f});                   
-                        square3TimesTable.setPosition({static_cast<float>(square2AnswerPosition.x) + 0.f, static_cast<float>(square2AnswerPosition.y) + 0.f});
-                    }    
-                    else if (square3TimesTablePosition.x >= square2AnswerPosition.x - 25 && square3TimesTablePosition.x <= square2AnswerPosition.x + 25 && 
-                        square3TimesTablePosition.y >= square2AnswerPosition.y - 25 && square3TimesTablePosition.y <= square2AnswerPosition.y + 25 &&
-                        timesTable3FirstNumber * timesTable3SecondNumber != answer2) 
-                    {
-                        square3TimesTable.setFillColor(Color::Red);
-                        text3TimesTable.setString("X");
-                        text3TimesTable.setCharacterSize(75);
-                        text3TimesTable.setFillColor(Color::White);   
-                        text3TimesTable.setPosition({static_cast<float>(square2AnswerPosition.x) + 35.f, static_cast<float>(square2AnswerPosition.y) + 10.f});                   
-                        square3TimesTable.setPosition({static_cast<float>(square2AnswerPosition.x) + 0.f, static_cast<float>(square2AnswerPosition.y) + 0.f});
-                    }
-                    else if (square3TimesTablePosition.x >= square3AnswerPosition.x - 25 && square3TimesTablePosition.x <= square3AnswerPosition.x + 25 && 
-                        square3TimesTablePosition.y >= square3AnswerPosition.y - 25 && square3TimesTablePosition.y <= square3AnswerPosition.y + 25 &&
-                        timesTable3FirstNumber * timesTable3SecondNumber == answer3) 
-                    {
-                        square3TimesTable.setFillColor(Color::Green);
-                        text3TimesTable.setString(L"\u2713");
-                        text3TimesTable.setCharacterSize(75);
-                        text3TimesTable.setFillColor(Color::White);   
-                        text3TimesTable.setPosition({static_cast<float>(square3AnswerPosition.x) + 40.f, static_cast<float>(square3AnswerPosition.y) + 10.f});                   
-                        square3TimesTable.setPosition({static_cast<float>(square3AnswerPosition.x) + 0.f, static_cast<float>(square3AnswerPosition.y) + 0.f});
-                    }    
-                    else if (square3TimesTablePosition.x >= square3AnswerPosition.x - 25 && square3TimesTablePosition.x <= square3AnswerPosition.x + 25 && 
-                        square3TimesTablePosition.y >= square3AnswerPosition.y - 25 && square3TimesTablePosition.y <= square3AnswerPosition.y + 25 &&
-                        timesTable3FirstNumber * timesTable3SecondNumber != answer3) 
-                    {
-                        square3TimesTable.setFillColor(Color::Red);
-                        text3TimesTable.setString("X");
-                        text3TimesTable.setCharacterSize(75);
-                        text3TimesTable.setFillColor(Color::White);   
-                        text3TimesTable.setPosition({static_cast<float>(square3AnswerPosition.x) + 35.f, static_cast<float>(square3AnswerPosition.y) + 10.f});                   
-                        square3TimesTable.setPosition({static_cast<float>(square3AnswerPosition.x) + 0.f, static_cast<float>(square3AnswerPosition.y) + 0.f});
-                    }
-                    else if (square3TimesTablePosition.x >= square4AnswerPosition.x - 25 && square3TimesTablePosition.x <= square4AnswerPosition.x + 25 && 
-                        square3TimesTablePosition.y >= square4AnswerPosition.y - 25 && square3TimesTablePosition.y <= square4AnswerPosition.y + 25 &&
-                        timesTable3FirstNumber * timesTable3SecondNumber == answer4) 
-                    {
-                        square3TimesTable.setFillColor(Color::Green);
-                        text3TimesTable.setString(L"\u2713");
-                        text3TimesTable.setCharacterSize(75);
-                        text3TimesTable.setFillColor(Color::White);   
-                        text3TimesTable.setPosition({static_cast<float>(square4AnswerPosition.x) + 40.f, static_cast<float>(square4AnswerPosition.y) + 10.f});                   
-                        square3TimesTable.setPosition({static_cast<float>(square4AnswerPosition.x) + 0.f, static_cast<float>(square4AnswerPosition.y) + 0.f});
-                    }    
-                    else if (square3TimesTablePosition.x >= square4AnswerPosition.x - 25 && square3TimesTablePosition.x <= square4AnswerPosition.x + 25 && 
-                        square3TimesTablePosition.y >= square4AnswerPosition.y - 25 && square3TimesTablePosition.y <= square4AnswerPosition.y + 25 &&
-                        timesTable3FirstNumber * timesTable3SecondNumber != answer4) 
-                    {
-                        square3TimesTable.setFillColor(Color::Red);
-                        text3TimesTable.setString("X");
-                        text3TimesTable.setCharacterSize(75);
-                        text3TimesTable.setFillColor(Color::White);   
-                        text3TimesTable.setPosition({static_cast<float>(square4AnswerPosition.x) + 35.f, static_cast<float>(square4AnswerPosition.y) + 10.f});                   
-                        square3TimesTable.setPosition({static_cast<float>(square4AnswerPosition.x) + 0.f, static_cast<float>(square4AnswerPosition.y) + 0.f});
-                    }
-
-                    // SQUARE 4 TIMES TABLE
-                    if (square4TimesTablePosition.x >= square1AnswerPosition.x - 25 && square4TimesTablePosition.x <= square1AnswerPosition.x + 25 && 
-                        square4TimesTablePosition.y >= square1AnswerPosition.y - 25 && square4TimesTablePosition.y <= square1AnswerPosition.y + 25 &&
-                        timesTable4FirstNumber * timesTable4SecondNumber == answer1) 
-                    {
-                        square4TimesTable.setFillColor(Color::Green);
-                        // Reference for unicode checkmark: https://en.wikipedia.org/wiki/List_of_Unicode_characters
-                        text4TimesTable.setString(L"\u2713");
-                        text4TimesTable.setCharacterSize(75);
-                        text4TimesTable.setFillColor(Color::White);   
-                        text4TimesTable.setPosition({static_cast<float>(square1AnswerPosition.x) + 40.f, static_cast<float>(square1AnswerPosition.y) + 10.f});                   
-                        square4TimesTable.setPosition({static_cast<float>(square1AnswerPosition.x) + 0.f, static_cast<float>(square1AnswerPosition.y) + 0.f});
-                    }
-                    else if (square4TimesTablePosition.x >= square1AnswerPosition.x - 25 && square4TimesTablePosition.x <= square1AnswerPosition.x + 25 && 
-                        square4TimesTablePosition.y >= square1AnswerPosition.y - 25 && square4TimesTablePosition.y <= square1AnswerPosition.y + 25 &&
-                        timesTable4FirstNumber * timesTable4SecondNumber != answer1) 
-                    {
-                        square4TimesTable.setFillColor(Color::Red);
-                        text4TimesTable.setString("X");
-                        text4TimesTable.setCharacterSize(75);
-                        text4TimesTable.setFillColor(Color::White);   
-                        text4TimesTable.setPosition({static_cast<float>(square1AnswerPosition.x) + 35.f, static_cast<float>(square1AnswerPosition.y) + 10.f});                   
-                        square4TimesTable.setPosition({static_cast<float>(square1AnswerPosition.x) + 0.f, static_cast<float>(square1AnswerPosition.y) + 0.f});
-                    }
-                    else if (square4TimesTablePosition.x >= square2AnswerPosition.x - 25 && square4TimesTablePosition.x <= square2AnswerPosition.x + 25 && 
-                        square4TimesTablePosition.y >= square2AnswerPosition.y - 25 && square4TimesTablePosition.y <= square2AnswerPosition.y + 25 &&
-                        timesTable4FirstNumber * timesTable4SecondNumber == answer2) 
-                    {
-                        square4TimesTable.setFillColor(Color::Green);
-                        text4TimesTable.setString(L"\u2713");
-                        text4TimesTable.setCharacterSize(75);
-                        text4TimesTable.setFillColor(Color::White);   
-                        text4TimesTable.setPosition({static_cast<float>(square2AnswerPosition.x) + 40.f, static_cast<float>(square2AnswerPosition.y) + 10.f});                   
-                        square4TimesTable.setPosition({static_cast<float>(square2AnswerPosition.x) + 0.f, static_cast<float>(square2AnswerPosition.y) + 0.f});
-                    }    
-                    else if (square4TimesTablePosition.x >= square2AnswerPosition.x - 25 && square4TimesTablePosition.x <= square2AnswerPosition.x + 25 && 
-                        square4TimesTablePosition.y >= square2AnswerPosition.y - 25 && square4TimesTablePosition.y <= square2AnswerPosition.y + 25 &&
-                        timesTable4FirstNumber * timesTable4SecondNumber != answer2) 
-                    {
-                        square4TimesTable.setFillColor(Color::Red);
-                        text4TimesTable.setString("X");
-                        text4TimesTable.setCharacterSize(75);
-                        text4TimesTable.setFillColor(Color::White);   
-                        text4TimesTable.setPosition({static_cast<float>(square2AnswerPosition.x) + 35.f, static_cast<float>(square2AnswerPosition.y) + 10.f});                   
-                        square4TimesTable.setPosition({static_cast<float>(square2AnswerPosition.x) + 0.f, static_cast<float>(square2AnswerPosition.y) + 0.f});
-                    }
-                    else if (square4TimesTablePosition.x >= square3AnswerPosition.x - 25 && square4TimesTablePosition.x <= square3AnswerPosition.x + 25 && 
-                        square4TimesTablePosition.y >= square3AnswerPosition.y - 25 && square4TimesTablePosition.y <= square3AnswerPosition.y + 25 &&
-                        timesTable4FirstNumber * timesTable4SecondNumber == answer3) 
-                    {
-                        square4TimesTable.setFillColor(Color::Green);
-                        text4TimesTable.setString(L"\u2713");
-                        text4TimesTable.setCharacterSize(75);
-                        text4TimesTable.setFillColor(Color::White);   
-                        text4TimesTable.setPosition({static_cast<float>(square3AnswerPosition.x) + 40.f, static_cast<float>(square3AnswerPosition.y) + 10.f});                   
-                        square4TimesTable.setPosition({static_cast<float>(square3AnswerPosition.x) + 0.f, static_cast<float>(square3AnswerPosition.y) + 0.f});
-                    }    
-                    else if (square4TimesTablePosition.x >= square3AnswerPosition.x - 25 && square4TimesTablePosition.x <= square3AnswerPosition.x + 25 && 
-                        square4TimesTablePosition.y >= square3AnswerPosition.y - 25 && square4TimesTablePosition.y <= square3AnswerPosition.y + 25 &&
-                        timesTable4FirstNumber * timesTable4SecondNumber != answer3) 
-                    {
-                        square4TimesTable.setFillColor(Color::Red);
-                        text4TimesTable.setString("X");
-                        text4TimesTable.setCharacterSize(75);
-                        text4TimesTable.setFillColor(Color::White);   
-                        text4TimesTable.setPosition({static_cast<float>(square3AnswerPosition.x) + 35.f, static_cast<float>(square3AnswerPosition.y) + 10.f});                   
-                        square4TimesTable.setPosition({static_cast<float>(square3AnswerPosition.x) + 0.f, static_cast<float>(square3AnswerPosition.y) + 0.f});
-                    }
-                    else if (square4TimesTablePosition.x >= square4AnswerPosition.x - 25 && square4TimesTablePosition.x <= square4AnswerPosition.x + 25 && 
-                        square4TimesTablePosition.y >= square4AnswerPosition.y - 25 && square4TimesTablePosition.y <= square4AnswerPosition.y + 25 &&
-                        timesTable4FirstNumber * timesTable4SecondNumber == answer4) 
-                    {
-                        square4TimesTable.setFillColor(Color::Green);
-                        text4TimesTable.setString(L"\u2713");
-                        text4TimesTable.setCharacterSize(75);
-                        text4TimesTable.setFillColor(Color::White);   
-                        text4TimesTable.setPosition({static_cast<float>(square4AnswerPosition.x) + 40.f, static_cast<float>(square4AnswerPosition.y) + 10.f});                   
-                        square4TimesTable.setPosition({static_cast<float>(square4AnswerPosition.x) + 0.f, static_cast<float>(square4AnswerPosition.y) + 0.f});
-                    }    
-                    else if (square4TimesTablePosition.x >= square4AnswerPosition.x - 25 && square4TimesTablePosition.x <= square4AnswerPosition.x + 25 && 
-                        square4TimesTablePosition.y >= square4AnswerPosition.y - 25 && square4TimesTablePosition.y <= square4AnswerPosition.y + 25 &&
-                        timesTable4FirstNumber * timesTable4SecondNumber != answer4) 
-                    {
-                        square4TimesTable.setFillColor(Color::Red);
-                        text4TimesTable.setString("X");
-                        text4TimesTable.setCharacterSize(75);
-                        text4TimesTable.setFillColor(Color::White);   
-                        text4TimesTable.setPosition({static_cast<float>(square4AnswerPosition.x) + 35.f, static_cast<float>(square4AnswerPosition.y) + 10.f});                   
-                        square4TimesTable.setPosition({static_cast<float>(square4AnswerPosition.x) + 0.f, static_cast<float>(square4AnswerPosition.y) + 0.f});
-                    }                    
-
                 }
             }            
 
@@ -705,25 +300,27 @@ int main()
         }
 
         window.clear();
-        window.draw(square1Answer);
-        window.draw(text1Answer); // put inside the main loop, between window.clear() and window.display()
-        window.draw(square2Answer);
-        window.draw(text2Answer);
-        window.draw(square3Answer);
-        window.draw(text3Answer);
-        window.draw(square4Answer);
-        window.draw(text4Answer);
-        window.draw(square4TimesTable);
-        window.draw(text4TimesTable);        
-        window.draw(square3TimesTable);
-        window.draw(text3TimesTable);        
-        window.draw(square2TimesTable);
-        window.draw(text2TimesTable);          
-        window.draw(square1TimesTable); // The drawings will layer on top of the drawings before it.
-        window.draw(text1TimesTable); // put inside the main loop, between window.clear() and window.display()               
+
+        for (int i = 0; i < timesTables.size(); i++) {
+            window.draw(squareAnswer[i]);
+            window.draw(textAnswer[i]);
+        }
+        // window.draw(squareAnswer[3]);
+        // window.draw(textAnswer[3]);
+        // window.draw(squareAnswer[2]);
+        // window.draw(textAnswer[2]);
+        // window.draw(squareAnswer[1]);
+        // window.draw(textAnswer[1]);
+        // window.draw(squareAnswer[0]);
+        // window.draw(textAnswer[0]);
+
+        // References on how to do a decreasing for loop: 
+        // https://algocademy.com/link/?problem=looping-in-reverse&lang=cpp&solution=1
+        for (int i = timesTables.size()-1; i > -1; i--) {
+            window.draw(squareTimesTable[i]); // The drawings will layer on top of the drawings before it and so squareTimesTable[0] needs to be last.
+            window.draw(textTimesTable[i]); // Put inside the main loop, between window.clear() and window.display().              
+        }
+
         window.display();
     }
-
-    
-
 }
