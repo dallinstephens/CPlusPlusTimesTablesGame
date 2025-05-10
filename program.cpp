@@ -4,34 +4,53 @@
 #include <vector>
 #include <cstdlib> // Needed for rand() and srand()
 #include <ctime>   // Needed for time()
-#include <queue>
+#include <cmath>
+#include <chrono>
+#include <thread>
 using namespace std;
 using namespace sf;
 
-int main()
-{
+// Reference for fullscreen: https://www.sfml-dev.org/tutorials/3.0/window/window/
+RenderWindow window(VideoMode({1600, 800}), "Times Tables Game", Style::Resize, State::Fullscreen);    // Open the application font
+
+const Font font("C:/Users/Dallin_Stephens/Documents/BYU-I Courses/CSE 310 Applied Programming/CPlusPlusTimesTablesGame/arialuni.ttf");
+
+// Create a vector called timesTables that will store strings.
+vector<string> timesTables;
+string numberString;
+
+int xTimesTable;
+string xTimesTableString;
+
+vector<int> timesTablesAnswers;
+
+bool incorrectAnswer;
+
+void initializeGame(int timeTableX) {
     // Reference to get a different random number each time the program runs:
     // https://www.w3schools.com/cpp/cpp_howto_random_number.asp
     // Get a different random number each time the program runs
     srand(time(0));
+    xTimesTable = timeTableX;
+    xTimesTableString = to_string(xTimesTable);
+}
 
-    // Reference for fullscreen: https://www.sfml-dev.org/tutorials/3.0/window/window/
-    RenderWindow window(VideoMode({1600, 800}), "Times Tables Game", Style::Resize, State::Fullscreen);    // Open the application font
+int main()
+{
+    initializeGame(2);
 
-    // Create a vector called timesTables that will store strings.
-    vector<string> timesTables;
-    string numberString;
-    int xTimesTable = 2;
-    string xTimesTableString = to_string(xTimesTable);
-    
-    vector<int> timesTablesAnswers;
-    
-    for (int i = 1; i < 13; i++) {
+    for (int i = 0; i < 13; i++) {
         numberString = to_string(i);
-      timesTables.push_back(numberString + " X " + xTimesTableString);
-      timesTables.push_back(xTimesTableString + " X " + numberString);
-      timesTablesAnswers.push_back(i * xTimesTable);
-      timesTablesAnswers.push_back(xTimesTable * i);
+        if (i == 0) {
+            timesTables.push_back(xTimesTableString + " X " + numberString);
+            timesTablesAnswers.push_back(xTimesTable * i);
+        }
+        else {
+            timesTables.push_back(numberString + " X " + xTimesTableString);
+            timesTables.push_back(xTimesTableString + " X " + numberString);
+            timesTablesAnswers.push_back(i * xTimesTable);
+            timesTablesAnswers.push_back(xTimesTable * i);
+        }
     }
     
     // for (string timesTable : timesTables) {
@@ -121,7 +140,7 @@ int main()
         j++;
     }
 
-    const Font font("C:/Users/Dallin_Stephens/Documents/BYU-I Courses/CSE 310 Applied Programming/CPlusPlusTimesTablesGame/arialuni.ttf");
+
 
     // Reference on declaring more than one variable in the same statement:
     // https://www.w3schools.com/cpp/cpp_variables_multiple.asp
@@ -147,6 +166,13 @@ int main()
 
     // cout << "timesTables.size(): " << timesTables.size();
 
+    // string direction;
+
+    // squareAnswer[0].setFillColor(Color::Yellow);
+    // squareAnswer[1].setFillColor(Color::Red);
+    // squareAnswer[2].setFillColor(Color::Green);
+    // squareAnswer[3].setFillColor(Color::Blue);    
+
     // Reference for for loop: https://www.w3schools.com/cpp/cpp_for_loop.asp
     for (int i = 0; i < timesTables.size(); i++) {
         // NOTE: SQUARE i TIMES TABLE DOES NOT NECESSARY GO WITH SQUARE i ANSWER, ETC.
@@ -167,16 +193,152 @@ int main()
     
         // Square i Answer
         squareAnswer[i].setSize({120.f, 120.f});
-        squareAnswer[i].setFillColor(Color(255, 212, 128)); // shade of orange
-        squareAnswer[i].setPosition({130 * i + 125.f, 130.f}); // set the absolute position of the square
+        // squareAnswer[i].setFillColor(Color(255, 212, 128)); // shade of orange
         answer[i] = randomAnswer[i];
         // Reference on how to convert number to string: https://www.geeksforgeeks.org/converting-number-to-string-in-cpp/
         // textAnswer[i].setFont(font); 
-        textAnswer[i].setString(to_string(answer[i])); // set the string to display    
-        textAnswer[i].setPosition({130 * i + 150 + 30.f, 120 + 50.f}); // set the absolute position of the text1TimesTable
+        textAnswer[i].setString(to_string(answer[i])); // set the string to display  
         textAnswer[i].setCharacterSize(24); // set the character size in pixels, not points!        
-        textAnswer[i].setFillColor(Color::Black); // set the color        
+        textAnswer[i].setFillColor(Color::Black); // set the color
         textAnswer[i].setStyle(Text::Bold); // set the text style
+       
+        if (i == 0) {
+            squareAnswer[i].setFillColor(sf::Color::Yellow); // Temporarily set a distinctive color
+            squareAnswer[i].setPosition({130 * (i + 1) + 615.f, 130 * (i + 3) + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i + 1) + 50 + 615.f, 130 * (i + 3) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 1) {
+            squareAnswer[i].setFillColor(sf::Color::Red); // Temporarily set a distinctive color
+            textAnswer[i].setFillColor(sf::Color::White);
+            squareAnswer[i].setPosition({130 * (i + 1) + 615.f, 130 * (i + 2) + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i + 1) + 50 + 615.f, 130 * (i + 2) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 2) {
+            squareAnswer[i].setFillColor(sf::Color::Green); // Temporarily set a distinctive color                
+            squareAnswer[i].setPosition({130 * i + 615.f, 130 * (i + 2)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * i + 50 + 615.f, 130 * (i + 2) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 3) {
+            squareAnswer[i].setFillColor(sf::Color::Blue); // Temporarily set a distinctive color
+            textAnswer[i].setFillColor(sf::Color::White);
+            squareAnswer[i].setPosition({130 * (i - 2) + 615.f, 130 * (i + 1) + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 2) + 50 + 615.f, 130 * (i + 1) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 4) {
+            squareAnswer[i].setFillColor(sf::Color::Yellow); // Temporarily set a distinctive color
+            squareAnswer[i].setPosition({130 * (i - 4) + 615.f, 130 * i + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 4) + 50 + 615.f, 130 * i + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 5) {
+            squareAnswer[i].setFillColor(sf::Color::Red); // Temporarily set a distinctive color
+            textAnswer[i].setFillColor(sf::Color::White);
+            squareAnswer[i].setPosition({130 * (i - 5) + 615.f, 130 * (i - 2) + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 5) + 50 + 615.f, 130 * (i - 2) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 6) {
+            squareAnswer[i].setFillColor(sf::Color::Green); // Temporarily set a distinctive color                
+            squareAnswer[i].setPosition({130 * (i - 6) + 615.f, 130 * (i - 4)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 6) + 50 + 615.f, 130 * (i - 4) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 7) {
+            squareAnswer[i].setFillColor(sf::Color::Blue); // Temporarily set a distinctive color
+            textAnswer[i].setFillColor(sf::Color::White);
+            squareAnswer[i].setPosition({130 * (i - 6) + 615.f, 130 * (i - 5) + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 6) + 50 + 615.f, 130 * (i - 5) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 8) {
+            squareAnswer[i].setFillColor(sf::Color::Yellow); // Temporarily set a distinctive color
+            squareAnswer[i].setPosition({130 * (i - 6) + 615.f, 130 * (i - 6) + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 6) + 50 + 615.f, 130 * (i - 6) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 9) {
+            squareAnswer[i].setFillColor(sf::Color::Red); // Temporarily set a distinctive color
+            textAnswer[i].setFillColor(sf::Color::White);
+            squareAnswer[i].setPosition({130 * (i - 6) + 615.f, 130 * (i - 7) + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 6) + 50 + 615.f, 130 * (i - 7) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 10) {
+            squareAnswer[i].setFillColor(sf::Color::Green); // Temporarily set a distinctive color                
+            squareAnswer[i].setPosition({130 * (i - 7) + 615.f, 130 * (i - 7)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 7) + 50 + 615.f, 130 * (i - 7) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 11) {
+            squareAnswer[i].setFillColor(sf::Color::Blue); // Temporarily set a distinctive color
+            textAnswer[i].setFillColor(sf::Color::White);
+            squareAnswer[i].setPosition({130 * (i - 8) + 615.f, 130 * (i - 7)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 8) + 50 + 615.f, 130 * (i - 7) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 12) {
+            squareAnswer[i].setFillColor(sf::Color::Yellow); // Temporarily set a distinctive color
+            squareAnswer[i].setPosition({130 * (i - 9) + 615.f, 130 * (i - 7)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 9) + 50 + 615.f, 130 * (i - 7) + 45.f}); // set the absolute position of the text1TimesTable
+        }        
+        else if (i == 13) {
+            squareAnswer[i].setFillColor(sf::Color::Red); // Temporarily set a distinctive color
+            textAnswer[i].setFillColor(sf::Color::White);
+            squareAnswer[i].setPosition({130 * (i - 11) + 615.f, 130 * (i - 8)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 11) + 50 + 615.f, 130 * (i - 8) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 14) {
+            squareAnswer[i].setFillColor(sf::Color::Green); // Temporarily set a distinctive color                
+            squareAnswer[i].setPosition({130 * (i - 13) + 615.f, 130 * (i - 9)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 13) + 50 + 615.f, 130 * (i - 9) + 45.f}); // set the absolute position of the text1TimesTable
+        }        
+        else if (i == 15) {
+            squareAnswer[i].setFillColor(sf::Color::Blue); // Temporarily set a distinctive color
+            textAnswer[i].setFillColor(sf::Color::White);
+            squareAnswer[i].setPosition({130 * (i - 15) + 615.f, 130 * (i - 10)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 15) + 50 + 615.f, 130 * (i - 10) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 16) {
+            squareAnswer[i].setFillColor(sf::Color::Yellow); // Temporarily set a distinctive color
+            squareAnswer[i].setPosition({130 * (i - 17) + 615.f, 130 * (i - 11)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 17) + 50 + 615.f, 130 * (i - 11) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 17) {
+            squareAnswer[i].setFillColor(sf::Color::Red); // Temporarily set a distinctive color
+            textAnswer[i].setFillColor(sf::Color::White);
+            squareAnswer[i].setPosition({130 * (i - 18) + 615.f, 130 * (i - 13)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 18) + 50 + 615.f, 130 * (i - 13) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 18) {
+            squareAnswer[i].setFillColor(sf::Color::Green); // Temporarily set a distinctive color                
+            squareAnswer[i].setPosition({130 * (i - 19) + 615.f, 130 * (i - 15)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 19) + 50 + 615.f, 130 * (i - 15) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 19) {
+            squareAnswer[i].setFillColor(sf::Color::Blue); // Temporarily set a distinctive color
+            textAnswer[i].setFillColor(sf::Color::White);
+            squareAnswer[i].setPosition({130 * (i - 20) + 615.f, 130 * (i - 17)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 20) + 50 + 615.f, 130 * (i - 17) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 20) {
+            squareAnswer[i].setFillColor(sf::Color::Yellow); // Temporarily set a distinctive color
+            squareAnswer[i].setPosition({130 * (i - 21) + 615.f, 130 * (i - 19)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 21) + 50 + 615.f, 130 * (i - 19) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 21) {
+            squareAnswer[i].setFillColor(sf::Color::Red); // Temporarily set a distinctive color
+            textAnswer[i].setFillColor(sf::Color::White);
+            squareAnswer[i].setPosition({130 * (i - 21) + 615.f, 130 * (i - 20)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 21) + 50 + 615.f, 130 * (i - 20) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 22) {
+            squareAnswer[i].setFillColor(sf::Color::Green); // Temporarily set a distinctive color                
+            squareAnswer[i].setPosition({130 * (i - 21) + 615.f, 130 * (i - 21)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 21) + 50 + 615.f, 130 * (i - 21) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 23) {
+            squareAnswer[i].setFillColor(sf::Color::Blue); // Temporarily set a distinctive color
+            textAnswer[i].setFillColor(sf::Color::White);
+            squareAnswer[i].setPosition({130 * (i - 21) + 615.f, 130 * (i - 22)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 21) + 50 + 615.f, 130 * (i - 22) + 45.f}); // set the absolute position of the text1TimesTable
+        }
+        else if (i == 24) {
+            squareAnswer[i].setFillColor(sf::Color::Yellow); // Temporarily set a distinctive color
+            squareAnswer[i].setPosition({130 * (i - 21) + 615.f, 130 * (i - 23)  + 0.f}); // set the absolute position of the square
+            textAnswer[i].setPosition({130 * (i - 21) + 50 + 615.f, 130 * (i - 23) + 45.f}); // set the absolute position of the text1TimesTable
+        }
     }
   
     // vector<bool> draggable = {false, false, false, false};
@@ -281,9 +443,18 @@ int main()
                                 textTimesTable[i].setFillColor(Color::White);   
                                 textTimesTable[i].setPosition({static_cast<float>(squareAnswerPosition[j].x) + 35.f, static_cast<float>(squareAnswerPosition[j].y) + 10.f});                   
                                 squareTimesTable[i].setPosition({static_cast<float>(squareAnswerPosition[j].x) + 0.f, static_cast<float>(squareAnswerPosition[j].y) + 0.f});
+                                incorrectAnswer = true;
                                 break;
                             }
                         }
+                    }
+
+                    // Reference on how to add a time delay:
+                    // https://www.geeksforgeeks.org/how-to-add-timed-delay-in-cpp/
+                    // Waiting for 3 seconds
+                    // this_thread::sleep_for(chrono::seconds(3));
+                    if (incorrectAnswer) {
+                        initializeGame(2);
                     }
                 }
             }            
