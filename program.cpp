@@ -10,9 +10,6 @@
 using namespace std;
 using namespace sf;
 
-// Reference for fullscreen: https://www.sfml-dev.org/tutorials/3.0/window/window/
-RenderWindow window(VideoMode({1600, 800}), "Times Tables Game", Style::Resize, State::Fullscreen);    // Open the application font
-
 const Font font("C:/Users/Dallin_Stephens/Documents/BYU-I Courses/CSE 310 Applied Programming/CPlusPlusTimesTablesGame/arialuni.ttf");
 
 // Create a vector called timesTables that will store strings.
@@ -26,20 +23,19 @@ vector<int> timesTablesAnswers;
 
 bool incorrectAnswer;
 
-void initializeGame(int timeTableX) {
+int xTimesTableInput;
+int xlevelInput;
+
+void initializeGame(int timeTableX, int level) {
     // Reference to get a different random number each time the program runs:
     // https://www.w3schools.com/cpp/cpp_howto_random_number.asp
     // Get a different random number each time the program runs
     srand(time(0));
     xTimesTable = timeTableX;
     xTimesTableString = to_string(xTimesTable);
-}
+    level += 1; // At level 12 for example, the number actually needs to be 13 instead of 12.
 
-int main()
-{
-    initializeGame(2);
-
-    for (int i = 0; i < 13; i++) {
+    for (int i = 0; i < level; i++) {
         numberString = to_string(i);
         if (i == 0) {
             timesTables.push_back(xTimesTableString + " X " + numberString);
@@ -52,6 +48,196 @@ int main()
             timesTablesAnswers.push_back(xTimesTable * i);
         }
     }
+}
+
+int main()
+{
+    // Reference for SFML window text:
+    // https://www.sfml-dev.org/tutorials/3.0/graphics/text/#loading-a-font
+    Text timesTableQuestion(font); // a font is required to make a text object
+    Text exitGame(font);
+
+    // set the string to display
+    timesTableQuestion.setString("Enter a letter for times table:\n"
+        "A.  1\n"
+        "B.  2\n"
+        "C.  3\n"
+        "D.  4\n"
+        "E.  5\n"
+        "F.  6\n"
+        "G.  7\n"
+        "H.  8\n"
+        "I.   9\n"
+        "J. 10\n"
+        "K. 11\n"
+        "L. 12"
+    );
+
+    string difficultyLevel = "Enter a letter for difficulty level:\n"
+        "Easiest is 1 and hardest is 12.\n"
+        "M.  1\n"
+        "N.  2\n"
+        "O.  3\n"
+        "P.  4\n"
+        "Q.  5\n"
+        "R.  6\n"
+        "S.  7\n"
+        "T.  8\n"
+        "U.  9\n"
+        "V. 10\n"
+        "W. 11\n"
+        "X. 12";
+
+    exitGame.setString("To exit the game, press \"Q\" to quit.");
+    
+    // set the character size
+    timesTableQuestion.setCharacterSize(24); // in pixels, not points!
+    exitGame.setCharacterSize(24);
+    
+    // set the color
+    timesTableQuestion.setFillColor(sf::Color::Red);
+    exitGame.setFillColor(Color::Green);
+    
+    // set the text style
+    timesTableQuestion.setStyle(Text::Bold);
+    exitGame.setStyle(sf::Text::Bold);
+
+    // Reference on how to set position:
+    // https://www.sfml-dev.org/tutorials/3.0/graphics/transform/
+    timesTableQuestion.setPosition({200.f, 70.f});
+    exitGame.setPosition({200.f, 20.f});
+
+    RenderWindow windowMenu(VideoMode({800, 600}), "Menu");
+
+    while (windowMenu.isOpen())
+    {
+        while (const std::optional event = windowMenu.pollEvent())
+        {
+            // Used to close the window.
+            Vector2i localPosition = Mouse::getPosition(windowMenu);
+            if (event->is<Event::Closed>()) {
+                windowMenu.close();
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Key::A)) {
+                timesTableQuestion.setString(difficultyLevel);
+                xTimesTableInput = 1;                                                                                                              
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Key::B)) {
+                timesTableQuestion.setString(difficultyLevel);
+                xTimesTableInput = 2;                                                                                                                 
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Key::C)) {
+                timesTableQuestion.setString(difficultyLevel);
+                xTimesTableInput = 3;                                                                                                                
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Key::D)) {
+                timesTableQuestion.setString(difficultyLevel);
+                xTimesTableInput = 4;                                                                                                               
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Key::E)) {
+                timesTableQuestion.setString(difficultyLevel);
+                xTimesTableInput = 5;                                                                                        
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Key::F)) {
+                timesTableQuestion.setString(difficultyLevel);
+                xTimesTableInput = 6;                                                                                         
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Key::G)) {
+                timesTableQuestion.setString(difficultyLevel);
+                xTimesTableInput = 7;                                                                                      
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Key::H)) {
+                timesTableQuestion.setString(difficultyLevel);
+                xTimesTableInput = 8;                                                                                          
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Key::I)) {
+                timesTableQuestion.setString(difficultyLevel);
+                xTimesTableInput = 9;                                                                                              
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Key::J)) {
+                timesTableQuestion.setString(difficultyLevel);
+                xTimesTableInput = 10;                                                                                                 
+            }                                                                                                
+            else if (Keyboard::isKeyPressed(Keyboard::Key::K)) {
+                timesTableQuestion.setString(difficultyLevel);
+                xTimesTableInput = 11;                                                                                               
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Key::L)) {
+                timesTableQuestion.setString(difficultyLevel);
+                xTimesTableInput = 12;                                                                                                      
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Key::M) && xTimesTableInput >= 1 && xTimesTableInput <=12) {
+                xlevelInput = 1;       
+                windowMenu.close();
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Key::N) && xTimesTableInput >= 1 && xTimesTableInput <=12) {
+                xlevelInput = 2;       
+                windowMenu.close();
+            } 
+            else if (Keyboard::isKeyPressed(Keyboard::Key::O) && xTimesTableInput >= 1 && xTimesTableInput <=12) {
+                xlevelInput = 3;       
+                windowMenu.close();
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Key::P) && xTimesTableInput >= 1 && xTimesTableInput <=12) {
+                xlevelInput = 4;       
+                windowMenu.close();
+            } 
+            else if (Keyboard::isKeyPressed(Keyboard::Key::Q) && xTimesTableInput >= 1 && xTimesTableInput <=12) {
+                xlevelInput = 5;       
+                windowMenu.close();
+            }   
+            else if (Keyboard::isKeyPressed(Keyboard::Key::R) && xTimesTableInput >= 1 && xTimesTableInput <=12) {
+                xlevelInput = 6;       
+                windowMenu.close();
+            } 
+            else if (Keyboard::isKeyPressed(Keyboard::Key::S) && xTimesTableInput >= 1 && xTimesTableInput <=12) {
+                xlevelInput = 7;       
+                windowMenu.close();
+            } 
+            else if (Keyboard::isKeyPressed(Keyboard::Key::T) && xTimesTableInput >= 1 && xTimesTableInput <=12) {
+                xlevelInput = 8;       
+                windowMenu.close();
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Key::U) && xTimesTableInput >= 1 && xTimesTableInput <=12) {
+                xlevelInput = 9;       
+                windowMenu.close();
+            } 
+            else if (Keyboard::isKeyPressed(Keyboard::Key::V) && xTimesTableInput >= 1 && xTimesTableInput <=12) {
+                xlevelInput = 10;       
+                windowMenu.close();
+            } 
+            else if (Keyboard::isKeyPressed(Keyboard::Key::W) && xTimesTableInput >= 1 && xTimesTableInput <=12) {
+                xlevelInput = 11;       
+                windowMenu.close();
+            } 
+            else if (Keyboard::isKeyPressed(Keyboard::Key::X) && xTimesTableInput >= 1 && xTimesTableInput <=12) {
+                xlevelInput = 12;       
+                windowMenu.close();
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Key::Q) && xTimesTableInput == 0) {
+                xTimesTableInput = 10;
+                xlevelInput = 12;
+                windowMenu.close();
+            }
+        }
+
+        windowMenu.clear();
+            // inside the main loop, between window.clear() and window.display()
+        windowMenu.draw(timesTableQuestion);
+        windowMenu.draw(exitGame);
+        windowMenu.display();
+    }  
+    
+    initializeGame(xTimesTableInput, xlevelInput);
+
+    // Reference to get a different random number each time the program runs:
+    // https://www.w3schools.com/cpp/cpp_howto_random_number.asp
+    // Get a different random number each time the program runs
+    // srand(time(0));
+    // int timeTableX = 2;
+    // xTimesTable = timeTableX;
+    // xTimesTableString = to_string(xTimesTable);
+
     
     // for (string timesTable : timesTables) {
     //   cout << timesTable << "\n";
@@ -342,7 +528,10 @@ int main()
     }
   
     // vector<bool> draggable = {false, false, false, false};
-    vector<bool> draggable(timesTables.size(), false);    
+    vector<bool> draggable(timesTables.size(), false); 
+    
+    // Reference for fullscreen: https://www.sfml-dev.org/tutorials/3.0/window/window/
+    RenderWindow window(VideoMode({1600, 800}), "Times Tables Game", Style::Resize, State::Fullscreen);    // Open the application font
 
     while (window.isOpen())
     {
@@ -453,9 +642,9 @@ int main()
                     // https://www.geeksforgeeks.org/how-to-add-timed-delay-in-cpp/
                     // Waiting for 3 seconds
                     // this_thread::sleep_for(chrono::seconds(3));
-                    if (incorrectAnswer) {
-                        initializeGame(2);
-                    }
+                    // if (incorrectAnswer) {
+                    //     initializeGame(2);
+                    // }
                 }
             }            
 
