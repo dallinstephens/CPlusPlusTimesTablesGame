@@ -50,8 +50,7 @@ void initializeGame(int timeTableX, int level) {
     }
 }
 
-int main()
-{
+void openMenuWindow() {
     // Reference for SFML window text:
     // https://www.sfml-dev.org/tutorials/3.0/graphics/text/#loading-a-font
     Text timesTableQuestion(font); // a font is required to make a text object
@@ -226,8 +225,12 @@ int main()
         windowMenu.draw(timesTableQuestion);
         windowMenu.draw(exitGame);
         windowMenu.display();
-    }  
-    
+    }
+}
+
+int main()
+{  
+    openMenuWindow();
     initializeGame(xTimesTableInput, xlevelInput);
 
     // Reference to get a different random number each time the program runs:
