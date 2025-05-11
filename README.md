@@ -1,7 +1,5 @@
 # Overview
 
-[Back to Menu](../)
-
 ### What I am trying to accomplish as a Software Developer
 As a Software Developer, I am developing the ability to learn new programming languages quickly to solve problems and create solutions. My focus as a developer is to implement programs with an appealing visual look for the user.
 
@@ -38,7 +36,5 @@ This video demonstrates my running code and how the game works.
 - With this game, I could have the squares change colors with each new level. I could also have the color of the squares be the same color for each level.
 - I could also add features where the user could go back to the menu window.
 - The file organization and installation could be cleaned up a bit.
-
-[Back to Menu](../)
 
 <!-- - [Using GCC with MinGW](https://code.visualstudio.com/docs/cpp/config-mingw#_prerequisites) -->
