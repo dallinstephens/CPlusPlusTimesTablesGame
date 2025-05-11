@@ -1,0 +1,875 @@
+Elements in the times tables vector: 
+12 X 0
+1 X 12
+12 X 1
+2 X 12
+12 X 2
+3 X 12
+12 X 3
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+7 X 12
+12 X 7
+8 X 12
+12 X 8
+9 X 12
+12 X 9
+10 X 12
+12 X 10
+11 X 12
+12 X 11
+12 X 12
+12 X 12
+randomIndex: 13
+Random Times Table Chosen: 7 X 12
+indexOfFirstSpaceCharacter: 1
+firstNumberAsString: 7
+firstNumber as an integer: 7
+indexOfLastSpaceCharacter: 3
+secondNumberAsString: 12
+secondNumber as an integer: 12
+Elements left in the times tables vector: 
+12 X 0
+1 X 12
+12 X 1
+2 X 12
+12 X 2
+3 X 12
+12 X 3
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+8 X 12
+12 X 8
+9 X 12
+12 X 9
+10 X 12
+12 X 10
+11 X 12
+12 X 11
+12 X 12
+12 X 12
+Elements in the times tables vector: 
+12 X 0
+1 X 12
+12 X 1
+2 X 12
+12 X 2
+3 X 12
+12 X 3
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+8 X 12
+12 X 8
+9 X 12
+12 X 9
+10 X 12
+12 X 10
+11 X 12
+12 X 11
+12 X 12
+12 X 12
+randomIndex: 18
+Random Times Table Chosen: 10 X 12
+indexOfFirstSpaceCharacter: 2
+firstNumberAsString: 10
+firstNumber as an integer: 10
+indexOfLastSpaceCharacter: 4
+secondNumberAsString: 12
+secondNumber as an integer: 12
+Elements left in the times tables vector: 
+12 X 0
+1 X 12
+12 X 1
+2 X 12
+12 X 2
+3 X 12
+12 X 3
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+8 X 12
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+11 X 12
+12 X 11
+12 X 12
+12 X 12
+Elements in the times tables vector: 
+12 X 0
+1 X 12
+12 X 1
+2 X 12
+12 X 2
+3 X 12
+12 X 3
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+8 X 12
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+11 X 12
+12 X 11
+12 X 12
+12 X 12
+randomIndex: 0
+Random Times Table Chosen: 12 X 0
+indexOfFirstSpaceCharacter: 2
+firstNumberAsString: 12
+firstNumber as an integer: 12
+indexOfLastSpaceCharacter: 4
+secondNumberAsString: 0
+secondNumber as an integer: 0
+Elements left in the times tables vector: 
+1 X 12
+12 X 1
+2 X 12
+12 X 2
+3 X 12
+12 X 3
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+8 X 12
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+11 X 12
+12 X 11
+12 X 12
+12 X 12
+Elements in the times tables vector: 
+1 X 12
+12 X 1
+2 X 12
+12 X 2
+3 X 12
+12 X 3
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+8 X 12
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+11 X 12
+12 X 11
+12 X 12
+12 X 12
+randomIndex: 4
+Random Times Table Chosen: 3 X 12
+indexOfFirstSpaceCharacter: 1
+firstNumberAsString: 3
+firstNumber as an integer: 3
+indexOfLastSpaceCharacter: 3
+secondNumberAsString: 12
+secondNumber as an integer: 12
+Elements left in the times tables vector: 
+1 X 12
+12 X 1
+2 X 12
+12 X 2
+12 X 3
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+8 X 12
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+11 X 12
+12 X 11
+12 X 12
+12 X 12
+Elements in the times tables vector: 
+1 X 12
+12 X 1
+2 X 12
+12 X 2
+12 X 3
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+8 X 12
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+11 X 12
+12 X 11
+12 X 12
+12 X 12
+randomIndex: 2
+Random Times Table Chosen: 2 X 12
+indexOfFirstSpaceCharacter: 1
+firstNumberAsString: 2
+firstNumber as an integer: 2
+indexOfLastSpaceCharacter: 3
+secondNumberAsString: 12
+secondNumber as an integer: 12
+Elements left in the times tables vector: 
+1 X 12
+12 X 1
+12 X 2
+12 X 3
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+8 X 12
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+11 X 12
+12 X 11
+12 X 12
+12 X 12
+Elements in the times tables vector: 
+1 X 12
+12 X 1
+12 X 2
+12 X 3
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+8 X 12
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+11 X 12
+12 X 11
+12 X 12
+12 X 12
+randomIndex: 11
+Random Times Table Chosen: 8 X 12
+indexOfFirstSpaceCharacter: 1
+firstNumberAsString: 8
+firstNumber as an integer: 8
+indexOfLastSpaceCharacter: 3
+secondNumberAsString: 12
+secondNumber as an integer: 12
+Elements left in the times tables vector: 
+1 X 12
+12 X 1
+12 X 2
+12 X 3
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+11 X 12
+12 X 11
+12 X 12
+12 X 12
+Elements in the times tables vector: 
+1 X 12
+12 X 1
+12 X 2
+12 X 3
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+11 X 12
+12 X 11
+12 X 12
+12 X 12
+randomIndex: 3
+Random Times Table Chosen: 12 X 3
+indexOfFirstSpaceCharacter: 2
+firstNumberAsString: 12
+firstNumber as an integer: 12
+indexOfLastSpaceCharacter: 4
+secondNumberAsString: 3
+secondNumber as an integer: 3
+Elements left in the times tables vector: 
+1 X 12
+12 X 1
+12 X 2
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+11 X 12
+12 X 11
+12 X 12
+12 X 12
+Elements in the times tables vector: 
+1 X 12
+12 X 1
+12 X 2
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+11 X 12
+12 X 11
+12 X 12
+12 X 12
+randomIndex: 15
+Random Times Table Chosen: 12 X 11
+indexOfFirstSpaceCharacter: 2
+firstNumberAsString: 12
+firstNumber as an integer: 12
+indexOfLastSpaceCharacter: 4
+secondNumberAsString: 11
+secondNumber as an integer: 11
+Elements left in the times tables vector: 
+1 X 12
+12 X 1
+12 X 2
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+11 X 12
+12 X 12
+12 X 12
+Elements in the times tables vector: 
+1 X 12
+12 X 1
+12 X 2
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+11 X 12
+12 X 12
+12 X 12
+randomIndex: 0
+Random Times Table Chosen: 1 X 12
+indexOfFirstSpaceCharacter: 1
+firstNumberAsString: 1
+firstNumber as an integer: 1
+indexOfLastSpaceCharacter: 3
+secondNumberAsString: 12
+secondNumber as an integer: 12
+Elements left in the times tables vector: 
+12 X 1
+12 X 2
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+11 X 12
+12 X 12
+12 X 12
+Elements in the times tables vector: 
+12 X 1
+12 X 2
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+11 X 12
+12 X 12
+12 X 12
+randomIndex: 13
+Random Times Table Chosen: 11 X 12
+indexOfFirstSpaceCharacter: 2
+firstNumberAsString: 11
+firstNumber as an integer: 11
+indexOfLastSpaceCharacter: 4
+secondNumberAsString: 12
+secondNumber as an integer: 12
+Elements left in the times tables vector: 
+12 X 1
+12 X 2
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+12 X 12
+12 X 12
+Elements in the times tables vector: 
+12 X 1
+12 X 2
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+6 X 12
+12 X 6
+12 X 7
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+12 X 12
+12 X 12
+randomIndex: 6
+Random Times Table Chosen: 6 X 12
+indexOfFirstSpaceCharacter: 1
+firstNumberAsString: 6
+firstNumber as an integer: 6
+indexOfLastSpaceCharacter: 3
+secondNumberAsString: 12
+secondNumber as an integer: 12
+Elements left in the times tables vector: 
+12 X 1
+12 X 2
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+12 X 6
+12 X 7
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+12 X 12
+12 X 12
+Elements in the times tables vector: 
+12 X 1
+12 X 2
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+12 X 6
+12 X 7
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+12 X 12
+12 X 12
+randomIndex: 6
+Random Times Table Chosen: 12 X 6
+indexOfFirstSpaceCharacter: 2
+firstNumberAsString: 12
+firstNumber as an integer: 12
+indexOfLastSpaceCharacter: 4
+secondNumberAsString: 6
+secondNumber as an integer: 6
+Elements left in the times tables vector: 
+12 X 1
+12 X 2
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+12 X 12
+12 X 12
+Elements in the times tables vector: 
+12 X 1
+12 X 2
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+12 X 8
+9 X 12
+12 X 9
+12 X 10
+12 X 12
+12 X 12
+randomIndex: 7
+Random Times Table Chosen: 12 X 8
+indexOfFirstSpaceCharacter: 2
+firstNumberAsString: 12
+firstNumber as an integer: 12
+indexOfLastSpaceCharacter: 4
+secondNumberAsString: 8
+secondNumber as an integer: 8
+Elements left in the times tables vector: 
+12 X 1
+12 X 2
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+9 X 12
+12 X 9
+12 X 10
+12 X 12
+12 X 12
+Elements in the times tables vector: 
+12 X 1
+12 X 2
+4 X 12
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+9 X 12
+12 X 9
+12 X 10
+12 X 12
+12 X 12
+randomIndex: 2
+Random Times Table Chosen: 4 X 12
+indexOfFirstSpaceCharacter: 1
+firstNumberAsString: 4
+firstNumber as an integer: 4
+indexOfLastSpaceCharacter: 3
+secondNumberAsString: 12
+secondNumber as an integer: 12
+Elements left in the times tables vector: 
+12 X 1
+12 X 2
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+9 X 12
+12 X 9
+12 X 10
+12 X 12
+12 X 12
+Elements in the times tables vector: 
+12 X 1
+12 X 2
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+9 X 12
+12 X 9
+12 X 10
+12 X 12
+12 X 12
+randomIndex: 1
+Random Times Table Chosen: 12 X 2
+indexOfFirstSpaceCharacter: 2
+firstNumberAsString: 12
+firstNumber as an integer: 12
+indexOfLastSpaceCharacter: 4
+secondNumberAsString: 2
+secondNumber as an integer: 2
+Elements left in the times tables vector: 
+12 X 1
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+9 X 12
+12 X 9
+12 X 10
+12 X 12
+12 X 12
+Elements in the times tables vector: 
+12 X 1
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+9 X 12
+12 X 9
+12 X 10
+12 X 12
+12 X 12
+randomIndex: 9
+Random Times Table Chosen: 12 X 12
+indexOfFirstSpaceCharacter: 2
+firstNumberAsString: 12
+firstNumber as an integer: 12
+indexOfLastSpaceCharacter: 4
+secondNumberAsString: 12
+secondNumber as an integer: 12
+Elements left in the times tables vector: 
+12 X 1
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+9 X 12
+12 X 9
+12 X 10
+12 X 12
+Elements in the times tables vector: 
+12 X 1
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+9 X 12
+12 X 9
+12 X 10
+12 X 12
+randomIndex: 7
+Random Times Table Chosen: 12 X 10
+indexOfFirstSpaceCharacter: 2
+firstNumberAsString: 12
+firstNumber as an integer: 12
+indexOfLastSpaceCharacter: 4
+secondNumberAsString: 10
+secondNumber as an integer: 10
+Elements left in the times tables vector: 
+12 X 1
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+9 X 12
+12 X 9
+12 X 12
+Elements in the times tables vector: 
+12 X 1
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+9 X 12
+12 X 9
+12 X 12
+randomIndex: 7
+Random Times Table Chosen: 12 X 12
+indexOfFirstSpaceCharacter: 2
+firstNumberAsString: 12
+firstNumber as an integer: 12
+indexOfLastSpaceCharacter: 4
+secondNumberAsString: 12
+secondNumber as an integer: 12
+Elements left in the times tables vector: 
+12 X 1
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+9 X 12
+12 X 9
+Elements in the times tables vector: 
+12 X 1
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+9 X 12
+12 X 9
+randomIndex: 0
+Random Times Table Chosen: 12 X 1
+indexOfFirstSpaceCharacter: 2
+firstNumberAsString: 12
+firstNumber as an integer: 12
+indexOfLastSpaceCharacter: 4
+secondNumberAsString: 1
+secondNumber as an integer: 1
+Elements left in the times tables vector: 
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+9 X 12
+12 X 9
+Elements in the times tables vector: 
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+9 X 12
+12 X 9
+randomIndex: 4
+Random Times Table Chosen: 9 X 12
+indexOfFirstSpaceCharacter: 1
+firstNumberAsString: 9
+firstNumber as an integer: 9
+indexOfLastSpaceCharacter: 3
+secondNumberAsString: 12
+secondNumber as an integer: 12
+Elements left in the times tables vector: 
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+12 X 9
+Elements in the times tables vector: 
+12 X 4
+5 X 12
+12 X 5
+12 X 7
+12 X 9
+randomIndex: 2
+Random Times Table Chosen: 12 X 5
+indexOfFirstSpaceCharacter: 2
+firstNumberAsString: 12
+firstNumber as an integer: 12
+indexOfLastSpaceCharacter: 4
+secondNumberAsString: 5
+secondNumber as an integer: 5
+Elements left in the times tables vector: 
+12 X 4
+5 X 12
+12 X 7
+12 X 9
+Elements in the times tables vector: 
+12 X 4
+5 X 12
+12 X 7
+12 X 9
+randomIndex: 2
+Random Times Table Chosen: 12 X 7
+indexOfFirstSpaceCharacter: 2
+firstNumberAsString: 12
+firstNumber as an integer: 12
+indexOfLastSpaceCharacter: 4
+secondNumberAsString: 7
+secondNumber as an integer: 7
+Elements left in the times tables vector: 
+12 X 4
+5 X 12
+12 X 9
+Elements in the times tables vector: 
+12 X 4
+5 X 12
+12 X 9
+randomIndex: 0
+Random Times Table Chosen: 12 X 4
+indexOfFirstSpaceCharacter: 2
+firstNumberAsString: 12
+firstNumber as an integer: 12
+indexOfLastSpaceCharacter: 4
+secondNumberAsString: 4
+secondNumber as an integer: 4
+Elements left in the times tables vector: 
+5 X 12
+12 X 9
+Elements in the times tables vector: 
+5 X 12
+12 X 9
+randomIndex: 0
+Random Times Table Chosen: 5 X 12
+indexOfFirstSpaceCharacter: 1
+firstNumberAsString: 5
+firstNumber as an integer: 5
+indexOfLastSpaceCharacter: 3
+secondNumberAsString: 12
+secondNumber as an integer: 12
+Elements left in the times tables vector: 
+12 X 9
+Elements in the times tables vector: 
+12 X 9
+randomIndex: 0
+Random Times Table Chosen: 12 X 9
+indexOfFirstSpaceCharacter: 2
+firstNumberAsString: 12
+firstNumber as an integer: 12
+indexOfLastSpaceCharacter: 4
+secondNumberAsString: 9
+secondNumber as an integer: 9
+Elements left in the times tables vector: 

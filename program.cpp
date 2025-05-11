@@ -5,8 +5,9 @@
 #include <cstdlib> // Needed for rand() and srand()
 #include <ctime>   // Needed for time()
 #include <cmath>
-#include <chrono>
-#include <thread>
+#include <chrono> // Used to pause time
+#include <thread> // Used to pause time
+#include <fstream> // Used to read and write to a file
 using namespace std;
 using namespace sf;
 
@@ -229,7 +230,7 @@ void openMenuWindow() {
 }
 
 int main()
-{  
+{
     openMenuWindow();
     initializeGame(xTimesTableInput, xlevelInput);
 
@@ -261,15 +262,24 @@ int main()
     vector<int> firstNumber;
     vector<int> secondNumber;
     vector<int> randomAnswer;
+
+    // Reference on how to read and write to a file:
+    // https://www.w3schools.com/cpp/cpp_files.asp
+    // Create file
+    ofstream outputFile("C:\\Users\\Dallin_Stephens\\Documents\\BYU-I Courses\\CSE 310 Applied Programming\\CPlusPlusTimesTablesGame\\output.txt");
+
     int j = 0;
     
     while (timesTablesManipulated.size() >= 1) {
         // Display all elements in the timesTable vector.
         // Reference to iterate through each element in a vector:
-        // https://www.w3schools.com/cpp/cpp_vectors.asp
-        cout << "Elements in the times tables vector: " << endl;
+        // https://www.w3schools.com/cpp/cpp_vectors.asp       
+
+        outputFile << "Elements in the times tables vector: " << endl;
         for (int i = 0; i < timesTablesManipulated.size(); i++) {
-            cout << timesTablesManipulated[i] << "\n";
+            // Write to output file
+            outputFile << timesTablesManipulated[i] << "\n";
+            // Write to output file
         }
         
         // Generate a random index between 0 and timesTablesManipulated.size() - 1
@@ -277,37 +287,37 @@ int main()
         // Used for random answers in different answer squares.
         int randomAnswerIndex = rand() % timesTablesManipulated.size();
         
-        cout << "randomIndex: " << randomIndex << "\n";
+        outputFile << "randomIndex: " << randomIndex << "\n";
 
         // Get the randomIndex element.
-        cout << "Random Times Table Chosen: " << timesTablesManipulated[randomIndex] << "\n";
+        outputFile << "Random Times Table Chosen: " << timesTablesManipulated[randomIndex] << "\n";
         
         // References to get first and last word in a string (using find_first_of and find_last_of to do it):
         // https://stackoverflow.com/questions/7853686/c-find-return-the-last-word-in-the-string-variable-text-string-getfirstwordt
         // https://www.geeksforgeeks.org/stdstringfind_last_of-in-c-with-examples/
         int indexOfFirstSpaceCharacter = timesTablesManipulated[randomIndex].find_first_of(' ');
-        cout << "indexOfFirstSpaceCharacter: " << indexOfFirstSpaceCharacter << endl;
+        outputFile << "indexOfFirstSpaceCharacter: " << indexOfFirstSpaceCharacter << endl;
         // Reference for substring (using it to get first and last word in a string):
         // https://www.geeksforgeeks.org/substring-in-cpp/
         // substr(pos, len);
         // indexOfFirstSpaceCharacter also happens to be the length of the first word.
         string firstNumberAsString = timesTablesManipulated[randomIndex].substr(0, indexOfFirstSpaceCharacter);
-        cout << "firstNumberAsString: " << firstNumberAsString << endl;
+        outputFile << "firstNumberAsString: " << firstNumberAsString << endl;
         // Reference on how to convert string to integer using stoi() - (s to i):
         // https://www.geeksforgeeks.org/convert-string-to-int-in-cpp/
         // Reference to add vector element:
         // https://www.w3schools.com/cpp/cpp_vectors.asp
         firstNumber.push_back(stoi(firstNumberAsString));
-        cout << "firstNumber as an integer: " << firstNumber[j] << endl;
+        outputFile << "firstNumber as an integer: " << firstNumber[j] << endl;
         
         int indexOfLastSpaceCharacter = timesTablesManipulated[randomIndex].find_last_of(' ');
-        cout << "indexOfLastSpaceCharacter: " << indexOfLastSpaceCharacter << endl;
+        outputFile << "indexOfLastSpaceCharacter: " << indexOfLastSpaceCharacter << endl;
         // Reference to find the length of a string:
         // https://www.w3schools.com/cpp/cpp_strings_length.asp
         string secondNumberAsString = timesTablesManipulated[randomIndex].substr(indexOfLastSpaceCharacter + 1, timesTablesManipulated[randomIndex].length() - (indexOfLastSpaceCharacter + 1));
-        cout << "secondNumberAsString: " << secondNumberAsString << endl;
+        outputFile << "secondNumberAsString: " << secondNumberAsString << endl;
         secondNumber.push_back(stoi(secondNumberAsString));
-        cout << "secondNumber as an integer: " << secondNumber[j] << endl;
+        outputFile << "secondNumber as an integer: " << secondNumber[j] << endl;
 
         randomAnswer.push_back(timesTablesManipulatedAnswers[randomAnswerIndex]);
         
@@ -320,16 +330,32 @@ int main()
         // Display all elements in the timesTable vector.
         // Reference to iterate through each element in a vector:
         // https://www.w3schools.com/cpp/cpp_vectors.asp
-        cout << "Elements left in the times tables vector: " << endl;
-        // cout << "timesTablesManipulated.size() - here: " << timesTablesManipulated.size();
+        outputFile << "Elements left in the times tables vector: " << endl;
+        // outputFile << "timesTablesManipulated.size() - here: " << timesTablesManipulated.size();
         for (int i = 0; i < timesTablesManipulated.size(); i++) {
-            cout << timesTablesManipulated[i] << "\n";
+            outputFile << timesTablesManipulated[i] << "\n";
         }
 
         j++;
     }
 
+    // Close output file
+    outputFile.close();
 
+    // Read file
+    string textInOutputFile;
+    
+    // Read from the file
+    // Reference: https://www.w3schools.com/cpp/cpp_files.asp
+    ifstream readFile("C:\\Users\\Dallin_Stephens\\Documents\\BYU-I Courses\\CSE 310 Applied Programming\\CPlusPlusTimesTablesGame\\output.txt");
+
+    while (getline(readFile, textInOutputFile)) {
+        // This outputs the text from the file.
+        cout << textInOutputFile << endl;
+    }
+
+    // Close the file
+    readFile.close();
 
     // Reference on declaring more than one variable in the same statement:
     // https://www.w3schools.com/cpp/cpp_variables_multiple.asp
@@ -534,7 +560,8 @@ int main()
     vector<bool> draggable(timesTables.size(), false); 
     
     // Reference for fullscreen: https://www.sfml-dev.org/tutorials/3.0/window/window/
-    RenderWindow window(VideoMode({1600, 800}), "Times Tables Game", Style::Resize, State::Fullscreen);    // Open the application font
+    RenderWindow window(VideoMode({1400, 800}), "Times Tables Game");
+    // RenderWindow window(VideoMode({1600, 800}), "Times Tables Game", Style::Resize, State::Fullscreen);    // Open the application font
 
     while (window.isOpen())
     {
