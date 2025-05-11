@@ -21,8 +21,6 @@ This video demonstrates my running code and how the game works.
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
-
 - [C/C++ for Visual Studio Code](https://code.visualstudio.com/docs/languages/cpp)
 - [SFML Setup in Visual Studio Code | Create C/C++ Applications using SFML + VSCode + MinGW-w64](https://www.youtube.com/watch?v=rZE700aaT5I)
 - [SFML (Simple and Fast Multimedia Library)](https://www.sfml-dev.org/)
