@@ -11,7 +11,7 @@ This is a C++ program that creates a times tables game. It is an educational gam
 ### Video Demo
 This video demonstrates my running code and how the game works.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/4pBI0FixIEQ)
 
 # Development Environment
 
